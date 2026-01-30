@@ -5,7 +5,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="h-20 fixed top-0 z-50 w-full border-b border-b-zinc-600 after:content-[''] after:absolute after:inset-0 after:bg-black after:opacity-50 after:blur-sm after:-z-0">
+    <header className="h-20 fixed top-0 z-50 w-full border-b border-b-zinc-600 after:content-[''] after:absolute after:inset-0 after:bg-black after:opacity-85 after:-z-0">
       <div className="h-full mx-auto flex max-w-7xl items-center justify-between px-6 py-2 z-10 relative">
 
         {/* Logo */}
