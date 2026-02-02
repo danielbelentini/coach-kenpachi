@@ -2,11 +2,11 @@ import heroImg from "../../assets/hero.jpg";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen w-full text-white overflow-hidden">
+    <section className="relative min-h-screen w-full px-6 text-white overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/30 z-0" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 min-h-screen flex items-center">
+      <div className="relative z-10 max-w-7xl mx-auto min-h-screen flex items-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full items-center">
           
           {/* Left content */}
@@ -68,7 +68,7 @@ export default function Hero() {
             />
 
             {/* Badge */}
-            <div className="absolute -bottom-6 -right-6 bg-zinc-900/90 backdrop-blur px-4 py-3 rounded-xl flex items-center gap-3 shadow-lg">
+            <div className="absolute -bottom-4 -right-6 bg-zinc-900/90 backdrop-blur px-4 py-3 rounded-xl flex items-center gap-3 shadow-lg">
               <span className="text-yellow-400 text-xl">🏅</span>
               <div>
                 <p className="text-sm font-semibold">Certificado IFBB</p>
@@ -81,8 +81,10 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-orange-400 animate-bounce">
-        ↓
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-orange-400 animate-bounce z-20">
+        <a href="#servicos" className="w-10 h-10 flex justify-center hover:cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down text-[#ff6b35]" data-loc="client/src/pages/Home.tsx:103"><path d="m6 9 6 6 6-6"></path></svg>
+        </a>
       </div>
     </section>
   );
