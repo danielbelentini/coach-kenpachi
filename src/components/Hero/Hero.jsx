@@ -50,7 +50,7 @@ export default function Hero() {
               </div>
 
               <div>
-                <p className="text-4xl font-black text-yellow-400 text-center">4+</p>
+                <p className="text-4xl font-black text-yellow-400 text-center">5+</p>
                 <p className="text-sm text-gray-400 text-center">Anos de Experiência</p>
               </div>
 
