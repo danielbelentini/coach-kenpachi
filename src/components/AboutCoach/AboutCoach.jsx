@@ -16,7 +16,7 @@ export default function AboutCoach() {
           <h2 className="text-4xl mb-6">Sobre o coach</h2>
 
           <p className="text-gray-400 mb-8 leading-relaxed">
-            <strong className="text-yellow-500">Transformar o corpo é consequência de transformar a mentalidade.</strong><br/>Coach kenoachi, nutricionista esportivo e coach fitness, atua há mais de 5 anos ajudando pessoas comuns a alcançarem resultados extraordinários. Com uma metodologia que combina ciência, disciplina e prática real de musculação, ele prova que evolução não é promessa — é processo.<br/>Aqui não existe milagre, existe método, constância e compromisso com resultados que permanecem.
+            <strong className="text-yellow-500">Transformar o corpo é consequência de transformar a mentalidade.</strong><br/>Coach Kenpachi, nutricionista esportivo e coach fitness, atua há mais de 5 anos ajudando pessoas comuns a alcançarem resultados extraordinários. Com uma metodologia que combina ciência, disciplina e prática real de musculação, ele prova que evolução não é promessa — é processo.<br/>Aqui não existe milagre, existe método, constância e compromisso com resultados que permanecem.
           </p>
 
           <ul className="space-y-6 mb-10">
