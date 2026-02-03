@@ -10,7 +10,7 @@ import Footer from "./components/Footer/Footer";
 
 export default function App() {
   return (
-    <div className="flex flex-wrap min-h-screen items-center justify-center bg-darkgray text-white">0
+    <div className="flex flex-wrap min-h-screen items-center justify-center bg-darkgray text-white">
       <ScrollSpyProvider>
         <Header />
         <main className="w-full">

@@ -15,7 +15,7 @@ export default function Hero() {
           {/* Left content */}
           <div>
             <span className="inline-block mb-6 rounded-full bg-orange-500 px-4 py-1 text-sm font-semibold">
-              Consultoria Atlética Premium
+              Consultoria Esportiva Avançada
             </span>
 
             <h1 className="text-4xl sm:text-5xl xl:text-6xl font-extrabold leading-tight">
