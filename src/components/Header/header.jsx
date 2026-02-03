@@ -1,82 +1,120 @@
 import { useState } from "react";
+import { useActiveSection } from "../../context/ScrollSpyContext";
 import logo from "../../assets/logo-coach-kenpachi.png";
 
+const MENU = [
+  { label: "Serviços", id: "servicos" },
+  { label: "Cases", id: "cases" },
+  { label: "Planos", id: "planos" },
+  { label: "Sobre", id: "sobre" },
+];
+
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const activeSection = useActiveSection();
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (!section) return;
+
+    const headerHeight = 80;
+    const y =
+      section.getBoundingClientRect().top +
+      window.scrollY -
+      headerHeight;
+
+    window.scrollTo({ top: y, behavior: "smooth" });
+    setMobileOpen(false); // fecha menu mobile
+  };
 
   return (
-    <header className="h-20 fixed top-0 z-50 w-full border-b border-b-zinc-600 after:content-[''] after:absolute after:inset-0 after:bg-black after:opacity-85 after:-z-0">
-      <div className="h-full mx-auto flex max-w-7xl items-center justify-between px-6 py-2 z-10 relative">
-
+    <header className="fixed top-0 left-0 w-full z-50 bg-black border-b border-neutral-800">
+      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center">
-          <div className="flex">
-            <img src={logo} alt="Coach Kenpachi" className="w-36" />
-          </div>
-        </div>
+        <img
+          src={logo}
+          alt="Coach Kenpachi"
+          className="h-9 w-auto cursor-pointer"
+          onClick={() => scrollToSection("servicos")}
+        />
 
-        {/* Menu Desktop */}
-        <nav className="hidden items-center gap-10 md:flex">
-          <a
-            href="#servicos"
-            className="text-base font-bold transition ease-in-out text-zinc-400 hover:text-white" 
-          >
-            Serviços
-          </a>
-          <a href="#cases" className="text-base font-bold transition ease-in-out text-zinc-400 hover:text-white">
-            Cases
-          </a>
-          <a href="#planos" className="text-base font-bold transition ease-in-out text-zinc-400 hover:text-white">
-            Planos
-          </a>
-          <a href="#sobre" className="text-base font-bold transition ease-in-out text-zinc-400 hover:text-white">
-            Sobre
-          </a>
+        {/* Desktop Menu */}
+        <nav className="hidden md:flex items-center gap-10">
+          {MENU.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              className={`relative text-sm font-medium transition
+                ${
+                  activeSection === item.id
+                    ? "text-white"
+                    : "text-neutral-400 hover:text-white"
+                }
+              `}
+            >
+              {item.label}
+
+              {activeSection === item.id && (
+                <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-yellow-500 rounded-full" />
+              )}
+            </button>
+          ))}
         </nav>
 
-        {/* Botão */}
-        <a
-          href="#planos"
-          className="hidden rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700 md:block font-700"
+        {/* Desktop CTA */}
+        <button
+          onClick={() => scrollToSection("planos")}
+          className="hidden md:block bg-blue-600 hover:bg-blue-500 transition text-white text-sm font-medium px-5 py-2.5 rounded-lg"
         >
           Conhecer Planos
-        </a>
+        </button>
 
-        {/* Hamburger */}
+        {/* Mobile Hamburger */}
         <button
-          onClick={() => setOpen(!open)}
-          className="flex flex-col gap-1 md:hidden"
+          onClick={() => setMobileOpen(true)}
+          className="md:hidden text-white"
+          aria-label="Abrir menu"
         >
-          <span className="h-[2px] w-6 bg-white" />
-          <span className="h-[2px] w-6 bg-white" />
-          <span className="h-[2px] w-6 bg-white" />
+          ☰
         </button>
       </div>
 
-      {/* Menu Mobile */}
-      {open && (
-        <div className="bg-black px-6 pb-6 md:hidden">
-          <nav className="flex flex-col gap-6">
-            <a href="#servicos" className="text-white">
-              <strong>Serviços</strong>
-            </a>
-            <a href="#cases" className="text-zinc-400">
-              Cases
-            </a>
-            <a href="#planos" className="text-zinc-400">
-              Planos
-            </a>
-            <a href="#sobre" className="text-zinc-400">
-              Sobre
-            </a>
+      {/* Mobile Menu Overlay */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur">
+          <div className="flex flex-col h-full px-6 pt-6">
+            {/* Top */}
+            <div className="flex justify-between items-center mb-10">
+              <img src={logo} alt="Coach Kenpachi" className="h-8" />
+              <button
+                onClick={() => setMobileOpen(false)}
+                className="text-white text-2xl"
+                aria-label="Fechar menu"
+              >
+                ✕
+              </button>
+            </div>
 
-            <a
-              href="#planos"
-              className="mt-4 rounded-lg bg-blue-600 px-4 py-2 text-center text-sm font-medium text-white"
+            {/* Menu Items */}
+            <nav className="flex flex-col gap-6">
+              {MENU.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className="text-left text-lg font-medium transition text-white">
+                  {item.label}
+                </button>
+              ))}
+            </nav>
+
+            {/* Mobile CTA */}
+            <button
+              onClick={() => scrollToSection("planos")}
+              className="mt-auto mb-10 bg-blue-600 hover:bg-blue-500 transition text-white font-medium py-3 rounded-xl"
             >
               Conhecer Planos
-            </a>
-          </nav>
+            </button>
+          </div>
         </div>
       )}
     </header>

@@ -5,7 +5,7 @@ export default function PricingTabs() {
   const isMensal = tab === "mensal";
 
   return (
-    <section className="w-full text-white py-16 px-4 flex justify-center">
+    <section className="w-full text-white py-16 px-4 flex justify-center" id="planos">
       <div className="w-full mx-auto">
 
         <div className="text-center mb-20">

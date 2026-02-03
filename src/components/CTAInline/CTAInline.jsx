@@ -1,6 +1,6 @@
 export default function CTAInline() {
   return (
-    <section className="w-full bg-gradient-to-br from-black via-zinc-900 to-black py-24 px-6">
+    <section className="w-full bg-gradient-to-br from-black via-zinc-900 to-black py-24 px-6" id="cta">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl md:text-5xl text-white mb-6 font-black">Escolha seu plano agora</h2>
 
@@ -9,7 +9,7 @@ export default function CTAInline() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-          <button className="bg-blue-600 hover:bg-blue-700 transition rounded-lg py-4 px-10 font-semibold text-lg text-white">
+          <button className="bg-blue-600 hover:bg-blue-700 transition rounded-lg py-4 px-10 font-semibold text-lg text-white" onClick={() => scrollToSection("planos")}>
             Conhecer Planos
           </button>
 

@@ -1,6 +1,6 @@
 export default function Testmonials() {
   return (
-    <section className="w-full bg-black text-white py-16 px-4">
+    <section className="w-full bg-black text-white py-16 px-4" id="cases">
       <div className="max-w-7xl mx-auto">
         
         <div className="text-center mb-20">
@@ -13,59 +13,6 @@ export default function Testmonials() {
           <p className="text-gray-400 max-w-md mx-auto">
             Resultados de clientes que confiaram no processo
           </p>
-        </div>
-
-        {/* Conteúdo */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Imagem única */}
-          <div className="border border-neutral-800 rounded-xl overflow-hidden">
-            <img
-              src="/images/testmonial-01.jpg"
-              alt="Transformação antes e depois"
-              className="w-full h-auto object-cover"
-            />
-          </div>
-
-          {/* Texto */}
-          <div>
-            <h3 className="text-2xl font-bold mb-4">
-              Roberto - 08 Semanas
-            </h3>
-
-            <p className="text-gray-400 mb-8 leading-relaxed">
-              "Comecei com 95kg e 28% de gordura corporal. Após 12 semanas
-              seguindo o programa do Coach Kenpachi, atingi 88kg com apenas
-              12% de gordura. Os resultados foram além do que esperava!"
-            </p>
-
-            {/* Métricas */}
-            <div className="grid grid-cols-2 gap-6 mb-8">
-              <div>
-                <p className="text-base text-gray-400">Peso Inicial</p>
-                <p className="text-2xl font-black text-orange-500">95 kg</p>
-              </div>
-
-              <div>
-                <p className="text-base text-gray-400">Peso Final</p>
-                <p className="text-2xl font-black text-green-500">88 kg</p>
-              </div>
-
-              <div>
-                <p className="text-base text-gray-400">Gordura Inicial</p>
-                <p className="text-2xl font-black text-orange-500">28%</p>
-              </div>
-
-              <div>
-                <p className="text-base text-gray-400">Gordura Final</p>
-                <p className="text-2xl font-black text-green-500">12%</p>
-              </div>
-            </div>
-
-            {/* Botão */}
-            <button className="bg-blue-600 hover:bg-blue-700 transition px-6 py-3 rounded-lg font-semibold">
-              Ver mais transformações
-            </button>
-          </div>
         </div>
 
         {/* Grid de depoimentos */}

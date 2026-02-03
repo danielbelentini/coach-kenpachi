@@ -1,6 +1,6 @@
 export default function OurServices() {
   return (
-    <section className="w-full py-24 px-6" id="servicos">
+    <section className="w-full min-h-screen py-32 px-6" id="servicos">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
