@@ -28,8 +28,8 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-black border-b border-neutral-800">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <header className="h-20 fixed top-0 z-50 w-full border-b border-b-zinc-600 after:content-[''] after:absolute after:inset-0 after:bg-black after:opacity-85 after:-z-0">
+      <div className="h-full mx-auto flex max-w-7xl items-center justify-between px-6 py-2 z-10 relative">
         {/* Logo */}
         <img
           src={logo}

@@ -1,6 +1,9 @@
+import { useScrollToSection } from "../../hooks/useScrollToSection";
 import heroImg from "../../assets/hero.jpg";
 
 export default function Hero() {
+  const scrollToSection = useScrollToSection();
+
   return (
     <section className="relative min-h-screen w-full px-6 text-white overflow-hidden" id="hero">
       {/* Background gradient */}
@@ -24,18 +27,18 @@ export default function Hero() {
             </h1>
 
             <p className="mt-6 max-w-xl text-gray-300 text-base sm:text-lg">
-              Consultoria profissional em dieta, treino, suplementação e ergogênicos.
+              Consultoria profissional em dieta, treino, suplementação e otimização hormonal.
               Formado em Nutrição com pós-graduação em Fisiculturismo.
             </p>
 
             {/* Buttons */}
             <div className="mt-8 flex flex-wrap gap-4">
-              <button className="flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-semibold hover:bg-blue-700 transition">
+              <button className="flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-semibold hover:bg-blue-700 transition" onClick={() => scrollToSection("planos")}>
                 Conhecer Planos
                 <span>→</span>
               </button>
 
-              <button className="rounded-lg border border-orange-500 px-6 py-3 font-semibold text-orange-400 hover:bg-orange-500 hover:text-black transition">
+              <button className="rounded-lg border border-orange-500 px-6 py-3 font-semibold text-orange-400 hover:bg-orange-500 hover:text-black transition" onClick={() => scrollToSection("sobre")}>
                 Saiba Mais
               </button>
             </div>

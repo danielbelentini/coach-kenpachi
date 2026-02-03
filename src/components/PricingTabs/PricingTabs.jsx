@@ -88,7 +88,7 @@ export default function PricingTabs() {
                   </li>
                   <li className="flex gap-2">
                     <span className="text-orange-500">✓</span>
-                    Consultoria de suplementação e ergogênicos
+                    Protocolo de suplementação e manipulados
                   </li>
                   <li className="flex gap-2">
                     <span className="text-orange-500">✓</span>

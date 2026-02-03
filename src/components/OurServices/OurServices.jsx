@@ -13,7 +13,7 @@ export default function OurServices() {
           <div className="w-20 h-[2px] bg-orange-500 mx-auto mt-4 mb-6" />
 
           <p className="text-gray-400 max-w-md mx-auto">
-            Consultoria completa para transformação atlética
+            Consultoria esportiva completa para transformação atlética
           </p>
         </div>
 
@@ -26,10 +26,10 @@ export default function OurServices() {
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-apple" data-loc="client/src/pages/Home.tsx:122"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"></path><path d="M10 2c1 .5 2 2 2 5"></path></svg>
             </div>
             <h3 className="text-2xl font-semibold text-white mb-3">
-              Consultoria em Dieta
+              Plano de Dieta
             </h3>
             <p className="text-blue-100 text-sm leading-relaxed">
-              Estratégias nutricionais personalizadas, alinhadas aos seus objetivos e rotina.
+              Dieta individualizada e planejada de acordo com a sua rotina e objetivos.
             </p>
           </div>
 
@@ -40,10 +40,10 @@ export default function OurServices() {
 
             </div>
             <h3 className="text-2xl font-semibold text-white mb-3">
-              Programação de Treino
+              Plano de Treino
             </h3>
             <p className="text-blue-100 text-sm leading-relaxed">
-              Treinos estruturados com progressão, periodização e foco total em performance.
+              Treino individualizado e periodizado de acordo com os seus objetivos e necessidades.
             </p>
           </div>
 
@@ -53,10 +53,10 @@ export default function OurServices() {
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap" data-loc="client/src/pages/Home.tsx:134"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
             </div>
             <h3 className="text-2xl font-semibold text-white mb-3">
-              Suplementação
+              Plano de Suplementação
             </h3>
             <p className="text-blue-100 text-sm leading-relaxed">
-              Recomendações de suplementos baseadas em evidências científicas.
+              Planejamento inteligente na prescrição de suplementos e manipulados para o seu objetivo .
             </p>
           </div>
 
@@ -66,13 +66,18 @@ export default function OurServices() {
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award" data-loc="client/src/pages/Home.tsx:140"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle></svg>
             </div>
             <h3 className="text-2xl font-semibold text-white mb-3">
-              Otimização de Performance
+              Plano de Aumento de Performance
             </h3>
             <p className="text-blue-100 text-sm leading-relaxed">
-              Orientação ética, segura e baseada em evidências para maximizar resultados.
+              Planejamento eficiente na utilização de recursos potencializadores de rendimento e estética.
             </p>
           </div>
+        </div>
 
+        <div className="w-full mt-20 flex justify-center">
+          <a href="#" className="w-full text-center sm:w-auto bg-blue-600 hover:bg-blue-700 transition rounded-lg py-4 px-10 font-semibold text-lg">
+              Entre em contato
+          </a>
         </div>
       </div>
     </section>

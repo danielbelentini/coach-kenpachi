@@ -1,7 +1,9 @@
+import logo from "../../assets/logo-coach-kenpachi.png";
+
 export default function Footer() {
   return (
     <footer className="w-full flex justify-center text-neutral-400" id="footer">
-      <div className="container mx-auto px-6 py-10">
+      <div className="container mx-auto px-6 py-5">
         {/* Top content 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           
@@ -48,7 +50,11 @@ export default function Footer() {
         <div className="my-10 h-px bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />*/}
 
         {/* Bottom */}
+        <div className="w-full flex justify-center pb-5">
+          <img src={logo} alt="Logo Coach Kenpachi" className="w-32 h-auto" />
+        </div>
         <div className="text-center text-sm text-white">
+          
           © 2026 Coach Kenpachi. Todos os direitos reservados.
         </div>
       </div>

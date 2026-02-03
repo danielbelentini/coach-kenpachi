@@ -5,7 +5,7 @@ export default function AboutCoach() {
         {/* Image */}
         <div className="w-full hidden lg:block">
           <img
-            src="/images/about-coach.jpg"
+            src="/coach-kenpachi-share.png"
             alt="Coach em consulta com cliente"
             className="rounded-2xl w-full object-cover shadow-lg"
           />
@@ -13,9 +13,11 @@ export default function AboutCoach() {
 
         {/* Content */}
         <div>
-          <h2 className="text-4xl mb-6">Sobre o Coach</h2>
+          <h2 className="text-4xl mb-6">Sobre o coach</h2>
 
-          <p className="text-gray-400 mb-8 leading-relaxed">Formado em Nutrição com especialização em Fisiculturismo, tenho mais de 5 anos de experiência transformando corpos e vidas. Minha metodologia combina ciência com prática, garantindo resultados reais e sustentáveis.</p>
+          <p className="text-gray-400 mb-8 leading-relaxed">
+            <strong className="text-yellow-500">Transformar o corpo é consequência de transformar a mentalidade.</strong><br/>Coach kenoachi, nutricionista esportivo e coach fitness, atua há mais de 5 anos ajudando pessoas comuns a alcançarem resultados extraordinários. Com uma metodologia que combina ciência, disciplina e prática real de musculação, ele prova que evolução não é promessa — é processo.<br/>Aqui não existe milagre, existe método, constância e compromisso com resultados que permanecem.
+          </p>
 
           <ul className="space-y-6 mb-10">
             <li className="flex items-start gap-4">
@@ -26,13 +28,13 @@ export default function AboutCoach() {
               </div>
             </li>
 
-            <li className="flex items-start gap-4">
+            {/* <li className="flex items-start gap-4">
               <IconUsers />
               <div>
                 <p className="font-semibold">500+ Clientes</p>
                 <p className="text-gray-400 text-sm">Transformações bem-sucedidas</p>
               </div>
-            </li>
+            </li> */}
 
             <li className="flex items-start gap-4">
               <IconBolt />
@@ -44,7 +46,7 @@ export default function AboutCoach() {
           </ul>
 
           <button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 transition rounded-lg py-4 px-10 font-semibold text-lg">
-            Agendar Consulta
+            Entre em contato
           </button>
         </div>
       </div>
