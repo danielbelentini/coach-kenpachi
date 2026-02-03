@@ -1,4 +1,8 @@
+import { useScrollToSection } from "../../hooks/useScrollToSection";
+
 export default function CTAInline() {
+  const scrollToSection = useScrollToSection();
+  
   return (
     <section className="w-full bg-gradient-to-br from-black via-zinc-900 to-black py-24 px-6" id="cta">
       <div className="max-w-4xl mx-auto text-center">
