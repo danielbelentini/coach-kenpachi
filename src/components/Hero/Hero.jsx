@@ -28,7 +28,6 @@ export default function Hero() {
 
             <p className="mt-6 max-w-xl text-gray-300 text-base sm:text-lg">
               Consultoria profissional em dieta, treino, suplementação e otimização hormonal.
-              Formado em Nutrição com pós-graduação em Fisiculturismo.
             </p>
 
             {/* Buttons */}
