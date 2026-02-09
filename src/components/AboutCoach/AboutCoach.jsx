@@ -45,9 +45,9 @@ export default function AboutCoach() {
             </li>
           </ul>
 
-          <button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 transition rounded-lg py-4 px-10 font-semibold text-lg">
+          <a href="https://wa.me/5511949080965?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20a%20consultoria" target="_blank" className="sm:flex inline-flex justify-center w-full lg:w-60 bg-blue-600 hover:bg-blue-700 transition rounded-lg py-4 px-10 font-semibold text-lg">
             Entre em contato
-          </button>
+          </a>
         </div>
       </div>
     </section>

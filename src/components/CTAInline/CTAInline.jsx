@@ -17,9 +17,9 @@ export default function CTAInline() {
             Conhecer Planos
           </button>
 
-          <button className="bg-transparent border border-white/20 hover:border-white/40 transition rounded-lg py-4 px-10 font-semibold text-lg text-blue-400 hover:text-blue-300">
+          <a href="https://wa.me/5511949080965?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20a%20consultoria" target="_blank" className="sm:flex inline-flex justify-center bg-transparent border border-white/20 hover:border-white/40 transition rounded-lg py-4 px-10 font-semibold text-lg text-blue-400 hover:text-blue-300">
             WhatsApp
-          </button>
+          </a>
         </div>
 
         <p className="text-sm text-gray-400">Responderemos em até 24 horas</p>
