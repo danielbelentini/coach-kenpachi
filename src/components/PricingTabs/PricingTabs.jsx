@@ -104,10 +104,18 @@ export default function PricingTabs() {
                   </li>
                 </ul>
 
-                <button className="w-full max-w-96 bg-blue-600 hover:bg-blue-700 transition rounded-lg py-3 font-semibold text-lg">
-                  Contratar Agora
-                </button>
+
+                {isMensal ? (
+                  <a href="https://cashfy.cloud/checkout?p=a4c0f341f4e045fa928238b3b3b347a7" target="_blank" rel="noopener noreferrer" className="flex justify-center w-full max-w-96 bg-blue-600 hover:bg-blue-700 transition rounded-lg py-3 font-semibold text-lg">
+                    Contratar Agora
+                  </a>
+                ) : (
+                  <a href="https://cashfy.cloud/checkout?p=0317d9e5393e0567aae92f1b777bc005" target="_blank" rel="noopener noreferrer" className="flex justify-center w-full max-w-96 bg-blue-600 hover:bg-blue-700 transition rounded-lg py-3 font-semibold text-lg">
+                    Contratar Agora
+                  </a>
+                )}
               </div>
+              
             </div>
 
           </div>
