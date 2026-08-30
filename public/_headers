@@ -1,0 +1,18 @@
+# Regras de cache/segurança aplicadas pelo Netlify (copiado como está para /out no build).
+# Referência: https://docs.netlify.com/routing/headers/
+
+# Assets com hash no nome (JS/CSS gerados pelo Next) podem ser
+# cacheados "para sempre" — o nome do arquivo muda a cada novo build.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Imagens: cache longo, mas revalidável (o nome do arquivo não muda
+# quando você substitui uma foto por outra com o mesmo nome).
+/images/*
+  Cache-Control: public, max-age=86400, must-revalidate
+
+# Headers de segurança básicos em todas as páginas
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin

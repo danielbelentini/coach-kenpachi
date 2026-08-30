@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* compensa o header fixo ao navegar por âncoras (#servicos, #faq, etc) */
+    scroll-padding-top: 88px;
+  }
+
+  ::selection {
+    background-color: #d85a30;
+    color: #1a1a1a;
+  }
+
+  /* Foco visível consistente para navegação por teclado */
+  :focus-visible {
+    outline: 2px solid #d85a30;
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  /* Estado inicial (oculto) dos elementos com <Reveal /> */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Respeita a preferência do usuário por menos movimento:
+   remove o scroll suave e as transições de entrada. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
