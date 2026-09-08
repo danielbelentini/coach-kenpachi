@@ -1,105 +1,244 @@
-# Landing Page — Nutrição Esportiva & Coach de Musculação
+# Landing Page — Coach Kenpachi
 
-Landing page de conversão construída em **Next.js 14 (App Router) + React + TypeScript + Tailwind CSS**, com **export 100% estático** — gera uma pasta `/out` com HTML, CSS e JS puros, sem depender de um servidor Node.js.
+Landing page de conversão para Coach Kenpachi (Consultoria Completa de
+nutrição + treinamento), construída em **Next.js + React + TypeScript com
+Static Export**. O resultado do build é HTML/CSS/JS puro — não depende de
+Node.js, banco de dados ou backend em produção.
 
----
+## 1. Estrutura do projeto
 
-## 1. Rodando o projeto
+```text
+kenpachi/
+├── docs/
+│   └── EVENTOS.md              # Documentação dos eventos GA4/GTM
+├── public/
+│   └── images/
+│       └── logo-coach-kenpachi.png
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx           # Metadata, JSON-LD, GTM, skip-link
+│   │   ├── page.tsx             # Composição das seções da landing page
+│   │   ├── globals.css          # Tokens de marca, layout, acessibilidade
+│   │   ├── sitemap.ts           # Gera sitemap.xml estático no build
+│   │   └── robots.ts            # Gera robots.txt estático no build
+│   ├── components/              # Um componente por seção da página
+│   ├── config/
+│   │   └── site.ts              # WhatsApp, mensagens, links — config central
+│   └── lib/
+│       └── analytics.ts         # Camada única de eventos GA4/GTM
+├── next.config.mjs               # output: 'export', images.unoptimized
+├── package.json
+└── tsconfig.json
+```
 
-Pré-requisito: [Node.js](https://nodejs.org) 18.18+ instalado na sua máquina (não no servidor de hospedagem — só para gerar os arquivos).
+## 2. Instalar dependências
+
+Requer **Node.js 20.9 ou superior** apenas em desenvolvimento/build (não em
+produção — Node 18 chegou ao fim do suporte e não é mais compatível com o
+Next.js 16).
 
 ```bash
-# instalar dependências
 npm install
+```
 
-# ambiente de desenvolvimento (http://localhost:3000)
+Se você atualizou este projeto a partir de uma instalação anterior, apague
+`node_modules` e `package-lock.json` antes de reinstalar, para não herdar
+versões antigas e transitivas (é a causa mais comum dos avisos de
+`deprecated` do npm):
+
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
+
+## 3. Rodar localmente
+
+```bash
 npm run dev
+```
 
-# gerar a versão estática de produção
+Acesse `http://localhost:3000`.
+
+## 4. Configurar variáveis de ambiente (opcional)
+
+Copie `.env.example` para `.env.local` e preencha o ID do GTM, se já
+disponível:
+
+```bash
+cp .env.example .env.local
+```
+
+Antes de publicar, ajuste também os placeholders em
+`src/config/site.ts` (número de WhatsApp, Instagram, domínio final).
+
+## 5. Build de produção (Static Export)
+
+```bash
 npm run build
 ```
 
-Depois do `npm run build`, os arquivos finais ficam em **`/out`**. É essa pasta inteira que você envia para a hospedagem (FTP, painel de hospedagem, Netlify, Vercel, Cloudflare Pages, etc.) — qualquer servidor de arquivos estáticos serve.
+O build gera a pasta estática em:
 
-> **Importante:** o build baixa as fontes do Google Fonts (`next/font/google`) automaticamente e as empacota localmente — por isso é necessário ter internet disponível **no momento do build**, mas o site publicado não faz nenhuma chamada externa em runtime.
-
----
-
-## 2. O que editar antes de publicar
-
-Praticamente todo o conteúdo do site está centralizado em **um único arquivo**:
-
-```
-src/lib/site-config.ts
+```text
+out/
 ```
 
-Lá você troca:
-- `site.professionalName`, `site.credential`, `site.brandName`
-- `site.whatsappNumber` (formato: `55` + DDD + número, só dígitos) e a mensagem padrão
-- `site.email`, `site.city`, `site.siteUrl` (domínio final, usado em SEO/sitemap)
-- `navLinks`, `socialLinks`
-- `heroStats`, `aboutCredentials`
-- `services` (cards da seção "Serviços oferecidos")
-- `testimonials` (depoimentos)
-- `faqItems` (perguntas frequentes — já sai com dados estruturados FAQPage para o Google)
+Esse é o conteúdo que deve ser publicado — apenas HTML, CSS, JS e imagens.
 
-Nenhum componente React precisa ser tocado para atualizar textos, número de WhatsApp ou links.
+## 6. Publicar em servidor tradicional
 
-### Trocando as fotos
+1. Rode `npm run build`.
+2. Copie **todo o conteúdo da pasta `out/`** (não a pasta em si) para a
+   raiz pública do servidor (ex.: `public_html/`, `www/`, ou a raiz do
+   domínio no seu provedor de hospedagem).
+3. Nenhuma configuração de servidor Node é necessária — qualquer servidor
+   de arquivos estáticos (Apache, Nginx, hospedagem compartilhada, CDN)
+   funciona.
 
-Todas as imagens estão em `public/images/` como placeholders gerados na paleta da marca (para você ver o layout funcionando). Para substituir por fotos reais, **basta sobrescrever os arquivos com o mesmo nome**, mantendo as duas versões (WebP + JPG/PNG):
+### Critério de aceitação
 
-| Arquivo | Onde aparece | Proporção sugerida |
-|---|---|---|
-| `hero-professional.webp/.jpg` | Foto principal do Hero | retrato, ~900×1100 |
-| `about-professional.webp/.jpg` | Seção "Sobre" | retrato, ~900×1000 |
-| `cta-background.webp/.jpg` | Fundo do CTA final | paisagem, ~1800×950 |
-| `testimonial-1/2/3.webp/.jpg` | Avatares dos depoimentos | quadrada, ~400×400 |
-| `og-image.jpg` | Preview ao compartilhar o link (WhatsApp/redes) | 1200×630 |
+> Se eu pegar somente os arquivos gerados pelo build estático (`out/`) e
+> enviar para um servidor tradicional, a página funcionará?
 
-O componente `PlaceholderImage` (`src/components/ui/PlaceholderImage.tsx`) já usa `<picture>` com **WebP como formato principal e JPG como fallback automático** — não precisa de nenhuma lógica extra para isso funcionar em navegadores mais antigos.
+**Sim.** O projeto não usa Server Actions, API Routes, middleware
+dependente de servidor, banco de dados ou autenticação server-side.
 
-### Rastreamento (GTM/GA4)
+## 7. Dependências utilizadas e justificativa
 
-O componente `Button` (`src/components/ui/Button.tsx`) aceita a prop `gtmId`, que vira o atributo `data-gtm-id` no HTML final — o mesmo padrão que você já usa no GTM (variável JS que sobe a árvore do DOM até achar `data-gtm-id`). Os IDs já aplicados nos botões de WhatsApp da página:
+| Pacote | Versão | Motivo |
+| --- | --- | --- |
+| `next` | `^16.3.3` | Framework exigido pelo briefing, com suporte nativo a Static Export. Versão em **Active LTS**, recebendo patches de segurança mensais. |
+| `react` / `react-dom` | `^19.2.0` | Exigidos pelo Next.js 16 (que requer React 19+). |
+| `typescript` | `^6.0.3` | Tipagem estática, exigida pelo briefing. Versão estável (a 7.0, com compilador nativo, ainda tem API limitada para algumas ferramentas — 6.x é a escolha mais estável hoje). |
+| `@types/node`, `@types/react`, `@types/react-dom` | mais recentes | Tipos compatíveis com Node 20+/22 e React 19. |
+| `eslint` | `^9.20.0` | Qualidade de código em desenvolvimento (não entra no bundle final). ESLint 8 está fora de manutenção. |
+| `eslint-config-next` | `^16.3.3` | Config oficial do Next.js, já no formato *flat config* (`eslint.config.mjs`) — o comando `next lint` foi removido a partir da v16. |
 
-- `whatsapp_header` / `whatsapp_header_mobile`
-- `whatsapp_hero`
-- `whatsapp_faq`
-- `whatsapp_cta_final`
+Nenhuma biblioteca de UI, animação, ou formulário foi adicionada — todas as
+interações (menu, scroll spy, FAQ, reveal ao rolar) foram implementadas
+com React e APIs nativas do navegador (`IntersectionObserver`, elemento
+`<details>`), conforme a seção 26 do briefing (evitar dependências
+desnecessárias).
 
-Basta configurar as tags/triggers no GTM para esses IDs (ou ajustar os nomes diretamente no código, se preferir outra convenção).
+### Sobre os avisos de `npm warn deprecated`
 
----
+Os avisos de pacotes descontinuados (`inflight`, `glob@7`, `rimraf@3`,
+`@humanwhocodes/*`, etc.) e o aviso de vulnerabilidade de segurança do
+`next@14.2.16` vinham das versões antigas fixadas neste projeto:
 
-## 3. Estrutura do projeto
+- **`next@14.2.16`**: Next.js 14 chegou ao fim do suporte em 26/10/2025 e
+  não recebe mais correções de segurança. Corrigido atualizando para
+  `next@^16.3.3` (Active LTS).
+- **`eslint@8.57.0`**: ESLint 8 está fora de manutenção; suas dependências
+  internas (`glob@7`, `rimraf@3`, `inflight`) são as que geravam os avisos
+  de *memory leak*/depreciação. Corrigido atualizando para `eslint@^9.20.0`
+  com o novo formato *flat config* (`eslint.config.mjs`).
 
-```
-src/
-  app/
-    layout.tsx        → metadata, SEO, fontes, dados estruturados (schema.org Person)
-    page.tsx           → monta as seções na ordem final
-    globals.css        → Tailwind + scroll suave + animações de entrada
-    robots.ts           → robots.txt gerado no build
-    sitemap.ts          → sitemap.xml gerado no build
-  components/
-    sections/           → Header, Hero, About, Services, Testimonials, Faq, CtaFinal, Footer
-    ui/                  → Button, PlaceholderImage, Section, Eyebrow, ThinDivider,
-                           ServiceCard, TestimonialCard, FaqAccordionItem, Icons, Reveal
-  hooks/
-    useInView.ts         → dispara animação de entrada ao rolar (respeita prefers-reduced-motion)
-    useScrolled.ts        → controla a transição do header fixo
-  lib/
-    site-config.ts         → TODO o conteúdo editável do site
-  types/
-    content.ts               → tipos TypeScript do conteúdo
-```
+Depois de instalar com as versões atuais, `npm install` não deve mais
+exibir esses avisos. Novos avisos de depreciação podem surgir com o tempo
+— rode `npm outdated` periodicamente para revisar.
 
----
+## 8. Checklist de SEO técnico
 
-## 4. Decisões técnicas relevantes
+- [x] Um único `<h1>` (no Hero).
+- [x] Hierarquia de `<h2>`/`<h3>` refletindo a estrutura real do conteúdo.
+- [x] `title` e `meta description` centralizados em `src/config/site.ts`.
+- [x] `canonical` configurado via `alternates.canonical`.
+- [x] Open Graph e Twitter Card configurados.
+- [x] `sitemap.xml` e `robots.txt` gerados automaticamente no build.
+- [x] `alt text` em todas as imagens (logo).
+- [x] Schema.org (`ProfessionalService`) com apenas dados reais e sustentados pelo briefing.
+- [ ] `[VALIDAR COM O CLIENTE]`: domínio final em `siteConfig.siteUrl` antes de publicar.
 
-- **Performance:** fontes auto-hospedadas via `next/font` (zero requisição externa em runtime, sem layout shift), imagens com `loading="lazy"` (exceto a do Hero, carregada com prioridade), sem bibliotecas de animação pesadas — só CSS + um `IntersectionObserver` leve.
-- **Acessibilidade:** skip link para o conteúdo principal, contraste verificado (WCAG AA) em todas as combinações de texto sobre fundo — inclusive o botão laranja usa texto grafite (não branco) porque dá o contraste correto —, FAQ com `aria-expanded`/`aria-controls` operável por teclado, `prefers-reduced-motion` respeitado em todas as animações.
-- **SEO:** metadata completa (title/description/Open Graph/Twitter Card), `sitemap.xml` e `robots.txt` gerados automaticamente, dados estruturados JSON-LD (`Person` no layout e `FAQPage` na seção de dúvidas), hierarquia de headings (H1 único no Hero, H2 por seção, H3 nos itens).
-- **CRO:** header fixo sempre com CTA de WhatsApp visível, prova social (números no Hero + depoimentos com resultado destacado), FAQ tratando objeções reais antes do CTA final, CTA final reforçando a conversão depois de toda a página ter respondido as dúvidas.
+## 9. Checklist de acessibilidade
+
+- [x] HTML semântico (`header`, `nav`, `main`, `section`, `footer`).
+- [x] Skip link para o conteúdo principal.
+- [x] Foco visível (`:focus-visible`) em toda a página.
+- [x] Contraste alto entre texto e fundo (branco/laranja sobre grafite).
+- [x] FAQ implementado com `<details>`/`<summary>` nativos (sem ARIA customizado).
+- [x] Áreas de toque de no mínimo 44–48px nos CTAs e botão flutuante.
+- [x] `prefers-reduced-motion` respeitado (reveal e scroll suave desativados).
+- [x] Nenhuma `div` clicável substituindo botão/link — todos os CTAs são `<a>` ou `<button>` semânticos.
+
+## 10. Checklist de performance
+
+- [x] Sem bibliotecas de UI externas. Corpo de texto usa fontes do sistema; os títulos H2 usam a fonte **Anton** (Google Fonts), carregada via `next/font/google` — o arquivo é baixado e self-hospedado **no momento do build** (requer internet só durante `npm run build`/`npm run dev`; o site publicado não faz nenhuma chamada à rede para isso).
+- [x] Static Export — sem SSR, sem custo de servidor por requisição.
+- [x] Apenas os componentes com interação real usam `"use client"` (nav, FAQ, reveal, botões de WhatsApp).
+- [x] Imagem do logo usa `next/image` com carregamento prioritário apenas no Header.
+- [x] Sem animações contínuas, parallax ou efeitos 3D.
+
+## 11. Pontos que precisam ser validados com o cliente
+
+Marcados no código como `[VALIDAR COM O CLIENTE]` ou `[CONTEÚDO NECESSÁRIO]`:
+
+- Número real de WhatsApp (`src/config/site.ts`).
+- URL do Instagram e domínio final de publicação.
+- Nome completo do coach, formação detalhada e trajetória (seção Sobre).
+- Foto real do Coach Kenpachi para a seção Sobre (`[IMAGEM NECESSÁRIA]` — ver nota abaixo).
+- Depoimentos reais, registros de evolução e o estudo de caso citado no briefing (seção Resultados).
+- Etapas, cadência e plataforma exatas do acompanhamento (seção Como Funciona).
+- Prazo de evolução e valores de investimento (FAQ).
+- ID do container do Google Tag Manager (`.env.local`).
+- Registro profissional/CNPJ para o rodapé, se aplicável.
+
+## 12. Como adicionar a foto real do Coach (seção Sobre)
+
+Hoje a seção Sobre mostra um placeholder tracejado com o texto
+`[IMAGEM NECESSÁRIA]`. Quando a foto estiver disponível:
+
+1. Coloque o arquivo em `public/images/coach-kenpachi.jpg` (ou `.png`/`.webp`).
+2. Em `src/components/About.tsx`, troque o bloco `<div className="about__photo-placeholder">...</div>` por:
+
+   ```tsx
+   <Image
+     src="/images/coach-kenpachi.jpg"
+     alt="Coach Kenpachi"
+     width={480}
+     height={600}
+     className="about__photo"
+   />
+   ```
+
+   (não esqueça de importar `Image` de `"next/image"` no topo do arquivo).
+3. Opcionalmente, ajuste `.about__photo-placeholder` em `globals.css` para
+   `.about__photo` (borda sólida em vez de tracejada, `object-fit: cover`).
+
+## 13. Como trocar a imagem de fundo do CTA final
+
+A seção final (antes do rodapé) usa uma imagem de fundo com overlay escuro
+para garantir contraste do texto. Hoje ela aponta para um placeholder
+gerado em [placehold.co](https://placehold.co), só para servir de guia de
+enquadramento — **precisa ser substituída antes de publicar**.
+
+1. Escolha uma imagem real (ambiente de treino, academia, ou o próprio
+   coach em ação) e coloque o arquivo em `public/images/`, por exemplo
+   `public/images/cta-background.jpg`.
+2. Em `src/components/FinalCta.tsx`, troque a constante:
+
+   ```tsx
+   const BACKGROUND_IMAGE_URL = "/images/cta-background.jpg";
+   ```
+
+3. O overlay escuro (`.final-cta__overlay` em `globals.css`) já está
+   ajustado para dar bom contraste ao texto branco sobre praticamente
+   qualquer foto; ajuste a opacidade do gradiente ali caso a imagem
+   escolhida seja muito clara ou muito "poluída" visualmente.
+
+## 14. Como trocar a imagem de fundo do Hero
+
+O Hero (topo da página) segue o mesmo padrão do CTA final: imagem de fundo
++ overlay escuro para manter o texto e o botão laranja com bom contraste.
+Hoje aponta para um placeholder do placehold.co.
+
+1. Coloque a imagem real em `public/images/`, por exemplo
+   `public/images/hero-background.jpg`.
+2. Em `src/components/Hero.tsx`, troque a constante:
+
+   ```tsx
+   const BACKGROUND_IMAGE_URL = "/images/hero-background.jpg";
+   ```
+
+3. O overlay (`.hero__overlay` em `globals.css`) usa o mesmo gradiente do
+   CTA final; ajuste a opacidade ali se a foto escolhida for muito clara.

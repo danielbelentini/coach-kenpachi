@@ -1,89 +1,79 @@
 import type { Metadata, Viewport } from "next";
-import { Big_Shoulders_Display, Inter, IBM_Plex_Mono } from "next/font/google";
-import { site } from "@/lib/site-config";
+import { Anton } from "next/font/google";
+import { siteConfig } from "@/config/site";
+import {
+  GoogleTagManagerNoScript,
+  GoogleTagManagerScript,
+} from "@/components/GoogleTagManager";
 import "./globals.css";
 
-// Fontes auto-hospedadas via next/font: baixadas em build time e
-// servidas localmente (sem requisição externa em runtime), o que
-// evita layout shift e melhora performance/SEO.
-const display = Big_Shoulders_Display({
+/**
+ * Fonte de destaque usada apenas nos H2 (títulos principais de seção).
+ * `next/font/google` baixa e self-hospeda o arquivo no momento do build —
+ * nenhuma chamada à rede acontece em produção, mantendo compatibilidade
+ * total com o Static Export.
+ */
+const anton = Anton({
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const body = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-body",
-  display: "swap",
-});
-
-const mono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-mono",
+  weight: "400",
+  variable: "--font-anton",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.siteUrl),
+  metadataBase: new URL(siteConfig.siteUrl),
   title: {
-    default: `${site.brandName} — Nutrição Esportiva e Coach de Musculação`,
-    template: `%s · ${site.brandName}`,
+    default: siteConfig.title,
+    template: `%s | ${siteConfig.name}`,
   },
-  description:
-    "Nutrição esportiva individual: plano alimentar construído a partir de uma anamnese completa, com acompanhamento contínuo para quem treina sério.",
-  keywords: [
-    "nutricionista esportivo",
-    "nutrição esportiva",
-    "coach de musculação",
-    "plano alimentar individual",
-    "anamnese nutricional",
-  ],
+  description: siteConfig.description,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: site.siteUrl,
-    title: `${site.brandName} — Nutrição Esportiva e Coach de Musculação`,
-    description:
-      "Plano alimentar individual, construído a partir de uma anamnese completa. Agende sua avaliação.",
-    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
+    url: siteConfig.siteUrl,
+    siteName: siteConfig.name,
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: [
+      {
+        url: "/images/logo-coach-kenpachi.png",
+        width: 1200,
+        height: 340,
+        alt: siteConfig.name,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.brandName} — Nutrição Esportiva`,
-    description:
-      "Plano alimentar individual, construído a partir de uma anamnese completa.",
-    images: ["/images/og-image.jpg"],
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: ["/images/logo-coach-kenpachi.png"],
   },
-  robots: { index: true, follow: true },
-  alternates: { canonical: site.siteUrl },
-  icons: {
-    icon: [
-      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
-    ],
-    apple: "/apple-touch-icon.png",
+  robots: {
+    index: true,
+    follow: true,
   },
-  manifest: "/site.webmanifest",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1A1A1A",
   width: "device-width",
   initialScale: 1,
+  themeColor: "#1b1d1f",
 };
 
-const personSchema = {
+// Schema.org: apenas dados que o briefing sustenta (nome, descrição, imagem, url).
+// Nenhum dado de avaliação, endereço ou telefone foi inventado.
+const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: site.professionalName,
-  jobTitle: "Nutricionista Esportivo",
-  worksFor: { "@type": "Organization", name: site.brandName },
-  areaServed: site.city,
-  url: site.siteUrl,
+  "@type": "ProfessionalService",
+  name: siteConfig.name,
+  description: siteConfig.description,
+  url: siteConfig.siteUrl,
+  image: `${siteConfig.siteUrl}/images/logo-coach-kenpachi.png`,
+  sameAs: [siteConfig.instagramUrl],
 };
 
 export default function RootLayout({
@@ -92,22 +82,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="pt-BR"
-      className={`${display.variable} ${body.variable} ${mono.variable}`}
-    >
+    <html lang="pt-BR" className={anton.variable}>
       <head>
+        <GoogleTagManagerScript />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="bg-graphite-950 font-body text-cream antialiased">
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-brand-orange-600 focus:px-4 focus:py-2 focus:font-body focus:text-sm focus:text-graphite-950"
-        >
-          Pular para o conteúdo
+      <body>
+        <GoogleTagManagerNoScript />
+        <a href="#main-content" className="skip-link">
+          Pular para o conteúdo principal
         </a>
         {children}
       </body>
