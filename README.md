@@ -242,3 +242,34 @@ Hoje aponta para um placeholder do placehold.co.
 
 3. O overlay (`.hero__overlay` em `globals.css`) usa o mesmo gradiente do
    CTA final; ajuste a opacidade ali se a foto escolhida for muito clara.
+
+## 15. Troubleshooting
+
+### `error TS5102: Option 'baseUrl' is deprecated...`
+
+A partir do TypeScript 6.0 (instalado na atualização de dependências deste
+projeto), a opção `baseUrl` do `tsconfig.json` foi descontinuada e o
+compilador trata isso como erro fatal de build, não apenas aviso.
+
+**Já corrigido neste projeto**: removemos `baseUrl` do `tsconfig.json`. Com
+`"moduleResolution": "bundler"`, os `paths` (`@/*`) são resolvidos
+diretamente em relação à pasta onde está o `tsconfig.json`, então não é
+necessário declarar `baseUrl` — o alias `@/...` continua funcionando
+normalmente em todo o projeto.
+
+Se esse erro aparecer de novo no futuro (por exemplo, após adicionar outro
+`tsconfig.json` em uma subpasta), remova `baseUrl` de lá também e confirme
+que os caminhos em `paths` começam com `./`.
+
+### `Error: Failed to collect page data for /robots.txt`
+
+Rotas de metadata geradas por código (`robots.ts`, `sitemap.ts`) precisam
+declarar explicitamente que são estáticas quando o projeto usa
+`"output": "export"` — sem isso, o Next.js falha o build com esse erro
+genérico (a mensagem real, `force-static`/`revalidate` não configurado,
+costuma ficar escondida atrás desse wrapper).
+
+**Já corrigido neste projeto**: adicionamos `export const dynamic = "force-static";`
+no topo de `src/app/robots.ts` e `src/app/sitemap.ts`. Se você criar novas
+rotas de metadata (`opengraph-image.tsx`, `icon.tsx`, etc.), adicione a
+mesma linha nelas também.
