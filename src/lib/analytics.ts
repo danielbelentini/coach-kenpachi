@@ -14,13 +14,20 @@ declare global {
   }
 }
 
+/**
+ * Valores definidos no briefing V2 (seção 23), em português, para bater
+ * exatamente com o que for configurado como gatilho no GTM/GA4.
+ * "header" foi mantido como valor extra (não listado no briefing) porque o
+ * botão do cabeçalho também é um clique real de WhatsApp que vale medir.
+ */
 export type CtaLocation =
   | "header"
   | "hero"
-  | "consultancy"
-  | "results"
-  | "nutrition"
-  | "training"
+  | "consultoria"
+  | "como_funciona"
+  | "resultados"
+  | "nutricao"
+  | "treinamento"
   | "final"
   | "floating";
 
@@ -36,11 +43,16 @@ export function trackWhatsAppClick(ctaLocation: CtaLocation) {
 }
 
 /** Clique no link secundário do Instagram (canal secundário, não concorre com o WhatsApp). */
-export function trackInstagramClick(ctaLocation: CtaLocation) {
-  pushToDataLayer({ event: "instagram_click", cta_location: ctaLocation });
+export function trackInstagramClick(location: "footer") {
+  pushToDataLayer({ event: "instagram_click", cta_location: location });
 }
 
 /** Interação com um item do FAQ (abrir uma pergunta). */
 export function trackFaqOpen(question: string) {
   pushToDataLayer({ event: "faq_interaction", faq_question: question });
+}
+
+/** Marco de profundidade de rolagem (25/50/75/100%). */
+export function trackScrollDepth(percentage: 25 | 50 | 75 | 100) {
+  pushToDataLayer({ event: "scroll_depth", scroll_percentage: percentage });
 }

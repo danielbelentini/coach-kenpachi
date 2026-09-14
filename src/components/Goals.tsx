@@ -7,10 +7,9 @@ const GOALS = [
   "Ganho de massa muscular",
   "Hipertrofia",
   "Redução de gordura",
-  "Melhora de performance",
+  "Performance",
   "Ganho de força",
-  "Retorno aos treinos",
-  "Evolução física estruturada",
+  "Voltar a treinar",
 ];
 
 export function Goals() {
@@ -23,9 +22,8 @@ export function Goals() {
             Isso é para <span className="text-accent">você</span>?
           </h2>
           <p className="section__lead">
-            Não existe um único perfil de pessoa que busca acompanhamento.
-            Se o seu objetivo é um dos abaixo, um planejamento estruturado
-            pode ajudar — independentemente do seu nível de experiência.
+            Cada pessoa chega com um objetivo diferente. O acompanhamento
+            parte do que você busca e do momento em que você está.
           </p>
         </Reveal>
 

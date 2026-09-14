@@ -6,16 +6,14 @@ export function About() {
       <div className="container about__grid">
         <Reveal className="about__photo-wrapper">
           {/*
-            [IMAGEM NECESSÁRIA]
-            Foto real do Coach Kenpachi (rosto, meio corpo ou ambiente de
-            trabalho). Nenhuma imagem de pessoa foi inventada — este é um
-            espaço reservado pronto para receber o arquivo definitivo.
-            Ao adicionar a foto real, substituir este placeholder por um
+            [IMAGEM REAL DO COACH — INSERIR]
+            A fotografia ainda será produzida (briefing V2, seção 6). Nenhuma
+            imagem foi gerada por IA para representar o Coach. Ao adicionar
+            a foto real, substituir este placeholder por um
             <Image src="/images/coach-kenpachi.jpg" alt="Coach Kenpachi" .../>
           */}
           <div className="about__photo-placeholder">
-            <span>[IMAGEM NECESSÁRIA]</span>
-            <p>Foto do Coach Kenpachi</p>
+            <span>[IMAGEM REAL DO COACH — INSERIR]</span>
           </div>
         </Reveal>
 
@@ -29,18 +27,20 @@ export function About() {
           <Reveal delay={80}>
             <div className="about__text">
               <p>
-                Formado em Nutrição e com mais de 5 anos de experiência,
-                Coach Kenpachi atua com acompanhamento de nutrição esportiva
-                e planejamento de treinamento de musculação.
+                Formado em Nutrição, com especialização em Body Building
+                Coach e mais de 5 anos de atuação no mercado, o Coach
+                Kenpachi trabalha com nutrição esportiva e planejamento de
+                treinamento de musculação.
               </p>
               <p>
-                Sua abordagem combina base teórica com aplicação prática no
-                dia a dia de cada aluno, ajustando o planejamento conforme a
-                evolução do processo.
+                Seu trabalho parte de uma ideia simples: cada pessoa
+                precisa de uma estratégia que faça sentido para seus
+                objetivos e para a própria rotina.
               </p>
-              <p className="about__placeholder">
-                [VALIDAR COM O CLIENTE: nome completo, trajetória
-                profissional e filosofia de trabalho em mais detalhes]
+              <p>
+                Por isso, seus planejamentos são individualizados e podem
+                ser adaptados conforme a evolução e as necessidades de cada
+                cliente.
               </p>
             </div>
           </Reveal>

@@ -8,11 +8,11 @@ export function OtherServices() {
       <div className="container">
         <Reveal>
           <h2 id="other-services-heading">
-            Outras formas de <span className="text-accent">acompanhamento</span>
+            Quer trabalhar apenas uma <span className="text-accent">das frentes</span>?
           </h2>
           <p className="section__lead">
-            Para quem prefere começar por uma frente específica, sem o
-            acompanhamento integrado da Consultoria Completa.
+            Também é possível contratar o acompanhamento de nutrição ou o
+            planejamento de treinamento separadamente.
           </p>
         </Reveal>
 
@@ -20,10 +20,14 @@ export function OtherServices() {
           <Reveal className="other-services__card">
             <IconApple className="other-services__card-icon" />
             <h3>Nutrição</h3>
-            <p>Acompanhamento de nutrição esportiva de forma isolada.</p>
+            <p className="other-services__price">A partir de R$ 399,90</p>
+            <p>
+              Acompanhamento de nutrição esportiva individualizado, de
+              acordo com seus objetivos e sua rotina.
+            </p>
             <WhatsAppCta
-              ctaLocation="nutrition"
-              messageKey="nutrition"
+              ctaLocation="nutricao"
+              messageKey="nutricao"
               variant="secondary"
               label="Falar sobre Nutrição"
             />
@@ -32,10 +36,14 @@ export function OtherServices() {
           <Reveal delay={80} className="other-services__card">
             <IconDumbbell className="other-services__card-icon" />
             <h3>Treinamento</h3>
-            <p>Planejamento de treinamento de musculação de forma isolada.</p>
+            <p className="other-services__price">A partir de R$ 299,90</p>
+            <p>
+              Planejamento individualizado de treinamento de musculação
+              para você executar na academia.
+            </p>
             <WhatsAppCta
-              ctaLocation="training"
-              messageKey="training"
+              ctaLocation="treinamento"
+              messageKey="treinamento"
               variant="secondary"
               label="Falar sobre Treinamento"
             />

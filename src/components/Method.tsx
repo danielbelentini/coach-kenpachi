@@ -1,21 +1,21 @@
-import { IconClock, IconGraduation, IconLayers } from "./Icons";
+import { IconCheck, IconGraduation, IconLayers } from "./Icons";
 import { Reveal } from "./Reveal";
 
 const DIFFERENTIALS = [
   {
-    icon: IconGraduation,
-    title: "Formação em Nutrição",
-    text: "Base técnica em nutrição esportiva aplicada ao planejamento alimentar.",
-  },
-  {
-    icon: IconClock,
-    title: "Mais de 5 anos de experiência",
-    text: "Atuação consolidada com acompanhamento de nutrição e treinamento.",
-  },
-  {
     icon: IconLayers,
-    title: "Abordagem teórico-prática",
-    text: "Fundamentação técnica aplicada de forma prática à rotina de cada aluno.",
+    title: "Individualização de verdade",
+    text: "Seu planejamento considera objetivos, rotina, necessidades, preferências, limitações e evolução.",
+  },
+  {
+    icon: IconCheck,
+    title: "Consistência sem extremismo",
+    text: "A proposta é construir uma estratégia que você consiga aplicar de forma consistente, sem depender de restrições desnecessárias ou mudanças radicais.",
+  },
+  {
+    icon: IconGraduation,
+    title: "Teoria aplicada à prática",
+    text: "Conhecimento técnico é transformado em orientações que possam fazer sentido na rotina e no processo de cada cliente.",
   },
 ];
 
@@ -25,8 +25,8 @@ export function Method() {
       <div className="container">
         <Reveal>
           <h2 id="method-heading">
-            O que torna esse acompanhamento{" "}
-            <span className="text-accent">diferente</span>
+            Um planejamento construído{" "}
+            <span className="text-accent">para você</span>
           </h2>
         </Reveal>
 

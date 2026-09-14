@@ -5,9 +5,6 @@
  * mensagens pré-preenchidas, links de redes sociais, domínio) fica aqui.
  * Nenhum componente deve ter número de telefone ou URL "hardcoded" fora
  * deste arquivo.
- *
- * [VALIDAR COM O CLIENTE]: número de WhatsApp, Instagram e domínio final
- * abaixo são placeholders e precisam ser substituídos antes da publicação.
  */
 
 export const siteConfig = {
@@ -20,25 +17,25 @@ export const siteConfig = {
   // [VALIDAR COM O CLIENTE] — domínio definitivo de publicação.
   siteUrl: "https://www.coachkenpachi.com.br",
 
-  // [VALIDAR COM O CLIENTE] — número em formato internacional, apenas dígitos.
-  whatsappNumber: "5500000000000",
+  // Número de WhatsApp Business fornecido no briefing V2.
+  whatsappNumber: "5511949080965",
 
-  // [VALIDAR COM O CLIENTE] — perfil oficial do Instagram.
-  instagramUrl: "https://instagram.com/coachkenpachi",
+  // [LINK DO INSTAGRAM — INSERIR]
+  // Deixado vazio de propósito: nenhum link foi fornecido no briefing V2.
+  // Enquanto estiver vazio, o rodapé mostra o texto placeholder em vez de
+  // um link quebrado ou inventado (ver src/components/InstagramLink.tsx).
+  instagramUrl: "",
 
+  // Mensagens pré-preenchidas definidas no briefing V2 (seção 19).
+  // "default" é reutilizada em Hero, Consultoria e CTA final, pois o
+  // briefing usa o mesmo texto nos três lugares.
   whatsappMessages: {
     default:
-      "Olá! Vim pela página do Coach Kenpachi e quero saber mais sobre a Consultoria Completa.",
-    consultancy:
-      "Olá! Quero saber mais sobre a Consultoria Completa do Coach Kenpachi.",
-    nutrition:
-      "Olá! Tenho interesse no acompanhamento de Nutrição com o Coach Kenpachi.",
-    training:
-      "Olá! Tenho interesse no acompanhamento de Treinamento com o Coach Kenpachi.",
-    results:
-      "Olá! Vi os resultados na página do Coach Kenpachi e quero saber mais.",
-    final:
-      "Olá! Quero começar meu acompanhamento com o Coach Kenpachi.",
+      "Olá, Coach! Conheci seu trabalho pela página e gostaria de saber mais sobre a Consultoria Completa. Meu objetivo é:",
+    nutricao:
+      "Olá, Coach! Conheci seu trabalho pela página e gostaria de saber mais sobre o acompanhamento de Nutrição. Meu objetivo é:",
+    treinamento:
+      "Olá, Coach! Conheci seu trabalho pela página e gostaria de saber mais sobre o planejamento de Treinamento. Meu objetivo é:",
   },
 } as const;
 

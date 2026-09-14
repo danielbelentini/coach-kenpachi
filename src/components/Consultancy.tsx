@@ -1,22 +1,23 @@
 import { IconApple, IconDumbbell, IconLayers } from "./Icons";
+import { PricingPlans } from "./PricingPlans";
 import { Reveal } from "./Reveal";
 import { WhatsAppCta } from "./WhatsAppCta";
 
-const INCLUDES = [
+const PILLARS = [
   {
     icon: IconApple,
-    title: "Planejamento de nutrição",
-    text: "Orientação alimentar alinhada ao seu objetivo, ajustada ao longo do acompanhamento.",
+    title: "Nutrição personalizada",
+    text: "Planejamento alimentar construído de acordo com seus objetivos, rotina, alimentação, preferências e necessidades.",
   },
   {
     icon: IconDumbbell,
-    title: "Planejamento de treinamento",
-    text: "Estrutura de treino para você executar na academia, com orientação clara sobre a progressão.",
+    title: "Treinamento personalizado",
+    text: "Planejamento de treinamento de musculação desenvolvido de acordo com seus objetivos, experiência, rotina, disponibilidade e prioridades.",
   },
   {
     icon: IconLayers,
     title: "Acompanhamento integrado",
-    text: "Nutrição e treino planejados pelo mesmo profissional, evitando desencontros entre as duas frentes.",
+    text: "Nutrição e treinamento pensados em conjunto para que a estratégia acompanhe sua evolução.",
   },
 ];
 
@@ -25,20 +26,18 @@ export function Consultancy() {
     <section id="consultoria" className="section consultancy" aria-labelledby="consultancy-heading">
       <div className="container">
         <Reveal>
-          <span className="badge">Principal solução</span>
+          <span className="badge badge--orange">Principal acompanhamento</span>
           <h2 id="consultancy-heading">
             Consultoria <span className="text-accent">Completa</span>
           </h2>
           <p className="section__lead">
-            O acompanhamento mais completo de Coach Kenpachi: nutrição e
-            treinamento planejados de forma integrada, por um único
-            profissional, para pessoas que querem orientação estruturada com
-            um objetivo definido.
+            Nutrição e treinamento planejados de forma individualizada, com
+            acompanhamento do mesmo profissional.
           </p>
         </Reveal>
 
         <div className="consultancy__grid">
-          {INCLUDES.map((item, index) => (
+          {PILLARS.map((item, index) => (
             <Reveal key={item.title} delay={index * 80} className="consultancy__card">
               <item.icon className="consultancy__card-icon" />
               <h3>{item.title}</h3>
@@ -47,17 +46,17 @@ export function Consultancy() {
           ))}
         </div>
 
-        <Reveal delay={240}>
+        <Reveal delay={200}>
+          <PricingPlans />
+        </Reveal>
+
+        <Reveal delay={280}>
           <div className="consultancy__cta">
             <WhatsAppCta
-              ctaLocation="consultancy"
-              messageKey="consultancy"
-              label="Quero a Consultoria Completa"
+              ctaLocation="consultoria"
+              messageKey="default"
+              label="Quero começar minha Consultoria"
             />
-            <p className="consultancy__cta-note">
-              Valores e formato de acompanhamento são apresentados diretamente
-              na conversa. [VALIDAR COM O CLIENTE]
-            </p>
           </div>
         </Reveal>
       </div>

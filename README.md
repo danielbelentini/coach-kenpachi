@@ -5,6 +5,14 @@ nutrição + treinamento), construída em **Next.js + React + TypeScript com
 Static Export**. O resultado do build é HTML/CSS/JS puro — não depende de
 Node.js, banco de dados ou backend em produção.
 
+> **V2**: esta versão implementa o briefing de evolução da página (nova
+> seção "Mais do que seguir um protocolo" em três blocos, planos de preço
+> mensal/trimestral/semestral dentro da Consultoria Completa, Case Marcelo
+> com espaço para antes/depois, FAQ com as 7 perguntas oficiais, e o
+> número de WhatsApp real). A identidade visual, os componentes e a
+> arquitetura da V1 foram preservados — apenas o conteúdo e as seções
+> pedidas no briefing V2 foram alterados.
+
 ## 1. Estrutura do projeto
 
 ```text
@@ -23,7 +31,8 @@ kenpachi/
 │   │   └── robots.ts            # Gera robots.txt estático no build
 │   ├── components/              # Um componente por seção da página
 │   ├── config/
-│   │   └── site.ts              # WhatsApp, mensagens, links — config central
+│   │   ├── site.ts              # WhatsApp, mensagens, links — config central
+│   │   └── faq.ts               # As 7 perguntas/respostas do FAQ (fácil de editar)
 │   └── lib/
 │       └── analytics.ts         # Camada única de eventos GA4/GTM
 ├── next.config.mjs               # output: 'export', images.unoptimized
@@ -169,19 +178,27 @@ exibir esses avisos. Novos avisos de depreciação podem surgir com o tempo
 - [x] Imagem do logo usa `next/image` com carregamento prioritário apenas no Header.
 - [x] Sem animações contínuas, parallax ou efeitos 3D.
 
-## 11. Pontos que precisam ser validados com o cliente
+## 11. Pontos que precisam ser validados com o cliente (V2)
 
-Marcados no código como `[VALIDAR COM O CLIENTE]` ou `[CONTEÚDO NECESSÁRIO]`:
+O número de WhatsApp já é o real (`5511949080965`, briefing V2). O que
+ainda falta, marcado no código como `[IMAGEM NECESSÁRIA]`,
+`[IMAGEM REAL DO COACH — INSERIR]`, `[DEPOIMENTO REAL — INSERIR]`,
+`[IMAGEM ANTES/DEPOIS — INSERIR COM AUTORIZAÇÃO]`,
+`[RESPOSTA DO COACH — INSERIR]` ou `[LINK DO INSTAGRAM — INSERIR]`:
 
-- Número real de WhatsApp (`src/config/site.ts`).
-- URL do Instagram e domínio final de publicação.
-- Nome completo do coach, formação detalhada e trajetória (seção Sobre).
-- Foto real do Coach Kenpachi para a seção Sobre (`[IMAGEM NECESSÁRIA]` — ver nota abaixo).
-- Depoimentos reais, registros de evolução e o estudo de caso citado no briefing (seção Resultados).
-- Etapas, cadência e plataforma exatas do acompanhamento (seção Como Funciona).
-- Prazo de evolução e valores de investimento (FAQ).
-- ID do container do Google Tag Manager (`.env.local`).
-- Registro profissional/CNPJ para o rodapé, se aplicável.
+- **Imagem conceitual do Hero** (`src/components/Hero.tsx`) — nutrição/treino/performance, nunca foto do Coach.
+- **Foto real do Coach Kenpachi** (seção Sobre — `src/components/About.tsx`).
+- **Fotos antes/depois do Case Marcelo**, já autorizado (`src/components/Results.tsx`).
+- **Depoimentos e fotos de outros clientes**, somente com autorização (`src/components/Results.tsx`).
+- **As 7 respostas do FAQ**, a serem escritas pelo Coach (`src/config/faq.ts`).
+- **Link do Instagram** (`src/config/site.ts` → `instagramUrl`; enquanto vazio, o rodapé mostra o placeholder em vez de link quebrado).
+- **Imagem de fundo do CTA final** (`src/components/FinalCta.tsx`).
+- **Domínio final de publicação** (`src/config/site.ts` → `siteUrl`).
+- **ID do container do Google Tag Manager** (`.env.local`).
+
+Não há mais placeholders de preço, plano, texto de seção ou copy — todo o
+conteúdo textual do briefing V2 já está implementado literalmente (ver
+seção 33 do briefing, "critérios de aceitação").
 
 ## 12. Como adicionar a foto real do Coach (seção Sobre)
 

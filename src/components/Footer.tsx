@@ -40,9 +40,6 @@ export function Footer() {
         <p>
           © {year} {siteConfig.name}. Todos os direitos reservados.
         </p>
-        <p className="site-footer__note">
-          [VALIDAR COM O CLIENTE: CNPJ/registro profissional, se aplicável]
-        </p>
       </div>
     </footer>
   );

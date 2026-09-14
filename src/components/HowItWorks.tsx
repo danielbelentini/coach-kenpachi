@@ -1,17 +1,18 @@
+import { WhatsAppCta } from "./WhatsAppCta";
 import { Reveal } from "./Reveal";
 
 const STEPS = [
   {
-    title: "Contato inicial",
-    text: "Você entra em contato pelo WhatsApp e explica seu objetivo atual.",
+    title: "Anamnese",
+    text: "Após a contratação, você responde uma anamnese completa sobre seus objetivos, rotina, alimentação, experiência, preferências e outros aspectos importantes para o planejamento.",
   },
   {
-    title: "Planejamento",
-    text: "Coach Kenpachi elabora o planejamento de nutrição e treinamento com base no seu objetivo.",
+    title: "Seu planejamento é elaborado",
+    text: "Com essas informações, o Coach desenvolve seu planejamento individualizado de nutrição e treinamento. Se necessário, ele entra em contato pelo WhatsApp para entender melhor algum ponto.",
   },
   {
-    title: "Execução e acompanhamento",
-    text: "Você executa o treino na academia seguindo a orientação recebida, com acompanhamento e ajustes ao longo do processo.",
+    title: "Você coloca o planejamento em prática",
+    text: "Você executa o treinamento na academia seguindo as orientações recebidas, enquanto sua evolução e suas dificuldades ajudam a direcionar os próximos ajustes.",
   },
 ];
 
@@ -24,8 +25,8 @@ export function HowItWorks() {
             Como <span className="text-accent">funciona</span>
           </h2>
           <p className="section__lead">
-            Um caminho simples, do primeiro contato ao acompanhamento
-            contínuo.
+            O acompanhamento começa entendendo você antes de definir o
+            planejamento.
           </p>
         </Reveal>
 
@@ -45,10 +46,15 @@ export function HowItWorks() {
           ))}
         </ol>
 
-        <p className="section__footnote">
-          Cadência de contato, plataforma utilizada e periodicidade dos
-          ajustes: [VALIDAR COM O CLIENTE]
-        </p>
+        <Reveal delay={320}>
+          <div className="how-it-works__cta">
+            <WhatsAppCta
+              ctaLocation="como_funciona"
+              messageKey="default"
+              label="Falar com o Coach no WhatsApp"
+            />
+          </div>
+        </Reveal>
       </div>
     </section>
   );

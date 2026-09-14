@@ -12,6 +12,7 @@ import { Faq } from "@/components/Faq";
 import { FinalCta } from "@/components/FinalCta";
 import { Footer } from "@/components/Footer";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
+import { ScrollDepthTracker } from "@/components/ScrollDepthTracker";
 
 export default function HomePage() {
   return (
@@ -32,6 +33,7 @@ export default function HomePage() {
       </main>
       <Footer />
       <FloatingWhatsApp />
+      <ScrollDepthTracker />
     </>
   );
 }
