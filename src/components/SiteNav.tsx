@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 
 const NAV_ITEMS = [
-  { href: "#inicio", label: "Início" },
   { href: "#consultoria", label: "Consultoria" },
   { href: "#como-funciona", label: "Como funciona" },
   { href: "#resultados", label: "Resultados" },
@@ -13,22 +12,31 @@ const NAV_ITEMS = [
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<string>("#inicio");
+  const [active, setActive] = useState<string>("");
 
   // Scroll spy: destaca o item da seção visível no momento.
   useEffect(() => {
-    const sections = NAV_ITEMS
-      .map((item) => document.getElementById(item.href.slice(1)))
-      .filter((el): el is HTMLElement => Boolean(el));
+    const navHrefs = new Set(NAV_ITEMS.map((item) => item.href));
+
+    // Observa TODAS as seções da página (não só as que têm item de menu).
+    // Isso é necessário para "limpar" o destaque quando o visitante está
+    // em Hero, Goals, Approach, Method, Outras Formas ou CTA final —
+    // seções sem link no menu. Sem isso, o último item observado
+    // continua marcado como ativo mesmo depois de rolar de volta para
+    // uma seção sem link (ex.: "Consultoria" ficava preso ativo ao
+    // voltar para o Hero).
+    const sections = Array.from(
+      document.querySelectorAll<HTMLElement>("#main-content > section")
+    );
 
     if (sections.length === 0) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(`#${entry.target.id}`);
-          }
+          if (!entry.isIntersecting) return;
+          const href = `#${entry.target.id}`;
+          setActive(navHrefs.has(href) ? href : "");
         });
       },
       { rootMargin: "-45% 0px -50% 0px", threshold: 0 }

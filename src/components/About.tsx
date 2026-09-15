@@ -8,13 +8,19 @@ export function About() {
           {/*
             [IMAGEM REAL DO COACH — INSERIR]
             A fotografia ainda será produzida (briefing V2, seção 6). Nenhuma
-            imagem foi gerada por IA para representar o Coach. Ao adicionar
-            a foto real, substituir este placeholder por um
-            <Image src="/images/coach-kenpachi.jpg" alt="Coach Kenpachi" .../>
+            imagem foi gerada por IA para representar o Coach. Este é um
+            placeholder real (não uma foto de banco de imagens) — quando a
+            foto estiver pronta, troque apenas o "src" abaixo pelo arquivo
+            definitivo (ex.: "/images/coach-kenpachi.jpg"). Nenhuma outra
+            mudança é necessária.
           */}
-          <div className="about__photo-placeholder">
-            <span>[IMAGEM REAL DO COACH — INSERIR]</span>
-          </div>
+          <img
+            src="https://placehold.co/480x600/1b1d1f/1b1d1f"
+            alt="Foto do Coach Kenpachi — imagem provisória, será substituída pela foto real"
+            className="about__photo-placeholder"
+            width={480}
+            height={600}
+          />
         </Reveal>
 
         <div className="about__content">

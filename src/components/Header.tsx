@@ -1,10 +1,12 @@
 import Image from "next/image";
+import { HeaderScrollOffset } from "./HeaderScrollOffset";
 import { SiteNav } from "./SiteNav";
 import { WhatsAppCta } from "./WhatsAppCta";
 
 export function Header() {
   return (
     <header className="site-header">
+      <HeaderScrollOffset />
       <div className="container site-header__inner">
         <a href="#inicio" className="site-header__brand" aria-label="Coach Kenpachi — página inicial">
           <Image
