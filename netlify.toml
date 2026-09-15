@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+
+# O Next.js com "output: 'export'" (next.config.mjs) gera os arquivos
+# estáticos em "out/", não em "dist/". Sem este arquivo, o Netlify usa o
+# valor configurado manualmente no painel (Site settings → Build & deploy
+# → Build settings → Publish directory), que é fácil de ficar desatualizado
+# ou configurado errado. Com este arquivo no repositório, a configuração
+# correta viaja junto com o código.

@@ -112,6 +112,26 @@ Esse é o conteúdo que deve ser publicado — apenas HTML, CSS, JS e imagens.
 **Sim.** O projeto não usa Server Actions, API Routes, middleware
 dependente de servidor, banco de dados ou autenticação server-side.
 
+### Publicar no Netlify
+
+O arquivo `netlify.toml` na raiz do projeto já configura isso
+automaticamente:
+
+```toml
+[build]
+  command = "npm run build"
+  publish = "out"
+```
+
+Se o site foi criado pela interface do Netlify **antes** desse arquivo
+existir, o painel pode ter salvo `dist` como "Publish directory" (padrão
+genérico do Netlify, não do Next.js) — isso causa o erro
+`Deploy directory 'dist' does not exist"` mesmo com o build passando. Para
+corrigir: **Site settings → Build & deploy → Build settings → Edit
+settings** e mude "Publish directory" para `out`, ou simplesmente
+confirme que o site está lendo o `netlify.toml` do repositório (ele tem
+prioridade sobre a configuração manual do painel).
+
 ## 7. Dependências utilizadas e justificativa
 
 | Pacote | Versão | Motivo |
