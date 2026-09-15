@@ -16,7 +16,7 @@ export function SiteNav() {
 
   // Scroll spy: destaca o item da seção visível no momento.
   useEffect(() => {
-    const navHrefs = new Set(NAV_ITEMS.map((item) => item.href));
+    const navHrefs = new Set<string>(NAV_ITEMS.map((item) => item.href));
 
     // Observa TODAS as seções da página (não só as que têm item de menu).
     // Isso é necessário para "limpar" o destaque quando o visitante está
