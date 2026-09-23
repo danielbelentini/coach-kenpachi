@@ -7,7 +7,7 @@ import { WhatsAppCta } from "./WhatsAppCta";
  * Coach aqui (briefing V2, seção 6). Ver README, seção "Como trocar a
  * imagem de fundo do Hero".
  */
-const BACKGROUND_IMAGE_URL = "https://placehold.co/1920x1080/1b1d1f/1b1d1f";
+const BACKGROUND_IMAGE_URL = "/images/teste-fundo-kenpachi.jpg";
 
 export function Hero() {
   return (
