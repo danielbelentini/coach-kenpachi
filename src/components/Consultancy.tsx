@@ -23,23 +23,33 @@ const PILLARS = [
 
 export function Consultancy() {
   return (
-    <section id="consultoria" className="section consultancy" aria-labelledby="consultancy-heading">
-      <div className="container">
+    <section
+      id="consultoria"
+      className="py-[clamp(3rem,6vw,5.5rem)] bg-gradient-to-b from-brand-graphite to-brand-graphite-light border-t border-b border-brand-line"
+      aria-labelledby="consultancy-heading"
+    >
+      <div className="max-w-[1180px] mx-auto px-5 md:px-8">
         <Reveal>
-          <span className="badge badge--orange">Principal acompanhamento</span>
+          <span className="inline-block text-white font-bold text-[0.8rem] px-[0.85rem] py-[0.35rem] rounded-full mb-4 bg-brand-orange">
+            Principal acompanhamento
+          </span>
           <h2 id="consultancy-heading">
-            Consultoria <span className="text-accent">Completa</span>
+            Consultoria <span className="text-brand-orange">Completa</span>
           </h2>
-          <p className="section__lead">
+          <p className="max-w-[56ch] text-[1.05rem]">
             Nutrição e treinamento planejados de forma individualizada, com
             acompanhamento do mesmo profissional.
           </p>
         </Reveal>
 
-        <div className="consultancy__grid">
+        <div className="grid gap-5 my-10 md:grid-cols-3">
           {PILLARS.map((item, index) => (
-            <Reveal key={item.title} delay={index * 80} className="consultancy__card">
-              <item.icon className="consultancy__card-icon" />
+            <Reveal
+              key={item.title}
+              delay={index * 80}
+              className="bg-brand-graphite border border-brand-line border-t-[3px] border-t-brand-orange rounded-[10px] p-6"
+            >
+              <item.icon className="w-7 h-7 text-brand-orange mb-3" />
               <h3>{item.title}</h3>
               <p>{item.text}</p>
             </Reveal>
@@ -51,7 +61,7 @@ export function Consultancy() {
         </Reveal>
 
         <Reveal delay={280}>
-          <div className="consultancy__cta">
+          <div className="mt-10 flex justify-center">
             <WhatsAppCta
               ctaLocation="consultoria"
               messageKey="default"

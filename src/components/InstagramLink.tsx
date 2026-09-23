@@ -17,7 +17,11 @@ import { trackInstagramClick } from "@/lib/analytics";
  */
 export function InstagramLink() {
   if (!siteConfig.instagramUrl) {
-    return <span className="site-footer__pending">[LINK DO INSTAGRAM — INSERIR]</span>;
+    return (
+      <span className="text-brand-orange font-bold text-xs normal-case tracking-normal">
+        [LINK DO INSTAGRAM — INSERIR]
+      </span>
+    );
   }
 
   return (
@@ -25,6 +29,7 @@ export function InstagramLink() {
       href={siteConfig.instagramUrl}
       target="_blank"
       rel="noopener noreferrer"
+      className="hover:opacity-75 hover:text-brand-orange focus-visible:opacity-75 focus-visible:text-brand-orange"
       onClick={() => trackInstagramClick("footer")}
     >
       Instagram

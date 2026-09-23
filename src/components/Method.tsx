@@ -21,21 +21,28 @@ const DIFFERENTIALS = [
 
 export function Method() {
   return (
-    <section className="section method" aria-labelledby="method-heading">
-      <div className="container">
+    <section
+      className="py-[clamp(3rem,6vw,5.5rem)] bg-brand-green"
+      aria-labelledby="method-heading"
+    >
+      <div className="max-w-[1180px] mx-auto px-5 md:px-8">
         <Reveal>
-          <h2 id="method-heading">
+          <h2 id="method-heading" className="text-white">
             Um planejamento construído{" "}
-            <span className="text-accent">para você</span>
+            <span className="text-brand-orange">para você</span>
           </h2>
         </Reveal>
 
-        <div className="method__grid">
+        <div className="grid gap-5 mt-8 md:grid-cols-3">
           {DIFFERENTIALS.map((item, index) => (
-            <Reveal key={item.title} delay={index * 80} className="method__card">
-              <item.icon className="method__card-icon" />
+            <Reveal
+              key={item.title}
+              delay={index * 80}
+              className="bg-[rgba(0,0,0,0.18)] rounded-[10px] p-6"
+            >
+              <item.icon className="w-7 h-7 text-brand-orange mb-3" />
               <h3>{item.title}</h3>
-              <p>{item.text}</p>
+              <p className="text-white/85">{item.text}</p>
             </Reveal>
           ))}
         </div>

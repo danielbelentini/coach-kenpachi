@@ -10,8 +10,8 @@ type RevealProps = PropsWithChildren<{
 
 /**
  * Entrada suave única quando a seção entra no viewport.
- * `prefers-reduced-motion` é tratado via CSS (ver globals.css), não aqui —
- * assim o conteúdo nunca fica escondido caso o JS falhe ao carregar.
+ * `motion-reduce:` (Tailwind) cobre `prefers-reduced-motion` — assim o
+ * conteúdo nunca fica escondido caso o JS falhe ao carregar.
  */
 export function Reveal({ children, className = "", delay = 0 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -38,7 +38,9 @@ export function Reveal({ children, className = "", delay = 0 }: RevealProps) {
   return (
     <div
       ref={ref}
-      className={`reveal ${visible ? "reveal--visible" : ""} ${className}`.trim()}
+      className={`transition-all duration-500 motion-reduce:transition-none motion-reduce:!opacity-100 motion-reduce:!translate-y-0 ${
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+      } ${className}`.trim()}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
     >
       {children}

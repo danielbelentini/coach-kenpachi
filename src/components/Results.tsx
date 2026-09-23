@@ -49,62 +49,74 @@ const CASES = [
 
 export function Results() {
   return (
-    <section id="resultados" className="section results" aria-labelledby="results-heading">
-      <div className="container">
+    <section
+      id="resultados"
+      className="py-[clamp(3rem,6vw,5.5rem)]"
+      aria-labelledby="results-heading"
+    >
+      <div className="max-w-[1180px] mx-auto px-5 md:px-8">
         <Reveal>
           <AccentMark />
           <h2 id="results-heading">
-            Resultados <span className="text-accent">reais</span>. Histórias
+            Resultados <span className="text-brand-orange">reais</span>. Histórias
             reais.
           </h2>
-          <p className="section__lead">
+          <p className="max-w-[56ch] text-[1.05rem]">
             Cada pessoa começa de um ponto diferente. Conheça algumas das
             evoluções de clientes que confiaram no acompanhamento do Coach
             Kenpachi.
           </p>
         </Reveal>
 
-        <div className="results__cases">
+        <div className="flex flex-col gap-7 mt-10">
           {CASES.map((item, index) => (
             <Reveal
               key={item.id}
               delay={80 + index * 80}
-              className={`results__case ${index % 2 === 1 ? "results__case--reverse" : ""}`.trim()}
+              className={`flex flex-col gap-6 bg-brand-graphite-light border border-brand-line rounded-[10px] p-6 case:items-center case:gap-10 case:p-9 ${
+                index % 2 === 1 ? "case:flex-row-reverse" : "case:flex-row"
+              }`}
             >
-              <div className="results__case-photos">
-                <figure className="results__case-photo">
+              <div className="flex gap-4 w-full case:w-[46%] case:max-w-[460px] case:shrink-0">
+                <figure className="flex-1 m-0 flex flex-col gap-[0.6rem]">
                   <img
                     src="https://placehold.co/450x600/26292c/26292c"
                     alt={item.beforeAlt}
-                    className="results__case-photo-placeholder"
+                    className="w-full aspect-[3/4] border border-brand-line rounded-[6px] object-cover block"
                     width={450}
                     height={600}
                   />
-                  <figcaption>Antes</figcaption>
+                  <figcaption className="text-center font-bold text-[0.8rem] uppercase tracking-[0.04em] text-white">
+                    Antes
+                  </figcaption>
                 </figure>
-                <figure className="results__case-photo">
+                <figure className="flex-1 m-0 flex flex-col gap-[0.6rem]">
                   <img
                     src="https://placehold.co/450x600/26292c/26292c"
                     alt={item.afterAlt}
-                    className="results__case-photo-placeholder"
+                    className="w-full aspect-[3/4] border border-brand-line rounded-[6px] object-cover block"
                     width={450}
                     height={600}
                   />
-                  <figcaption>Depois</figcaption>
+                  <figcaption className="text-center font-bold text-[0.8rem] uppercase tracking-[0.04em] text-white">
+                    Depois
+                  </figcaption>
                 </figure>
               </div>
 
-              <div className="results__case-content">
+              <div className="flex-1 min-w-0">
                 {item.label && item.title && item.paragraphs ? (
                   <>
-                    <p className="results__case-label">{item.label}</p>
-                    <h3>{item.title}</h3>
+                    <p className="text-brand-orange font-bold text-[0.85rem] mb-[0.35rem]">
+                      {item.label}
+                    </p>
+                    <h3 className="mb-3">{item.title}</h3>
                     {item.paragraphs.map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>
                     ))}
                   </>
                 ) : (
-                  <p className="results__case-pending">
+                  <p className="text-brand-orange font-bold text-[0.9rem] mb-0">
                     [DEPOIMENTO REAL — INSERIR]
                   </p>
                 )}

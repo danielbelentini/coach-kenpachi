@@ -4,23 +4,26 @@ import { WhatsAppCta } from "./WhatsAppCta";
 
 export function OtherServices() {
   return (
-    <section className="section other-services" aria-labelledby="other-services-heading">
-      <div className="container">
+    <section
+      className="py-[clamp(3rem,6vw,5.5rem)] bg-brand-graphite-light"
+      aria-labelledby="other-services-heading"
+    >
+      <div className="max-w-[1180px] mx-auto px-5 md:px-8">
         <Reveal>
           <h2 id="other-services-heading">
-            Quer trabalhar apenas uma <span className="text-accent">das frentes</span>?
+            Quer trabalhar apenas uma <span className="text-brand-orange">das frentes</span>?
           </h2>
-          <p className="section__lead">
+          <p className="max-w-[56ch] text-[1.05rem]">
             Também é possível contratar o acompanhamento de nutrição ou o
             planejamento de treinamento separadamente.
           </p>
         </Reveal>
 
-        <div className="other-services__grid">
-          <Reveal className="other-services__card">
-            <IconApple className="other-services__card-icon" />
+        <div className="grid gap-5 mt-8 sm:grid-cols-2">
+          <Reveal className="bg-brand-graphite border border-brand-line rounded-[6px] p-6">
+            <IconApple className="w-[26px] h-[26px] text-brand-orange mb-3" />
             <h3>Nutrição</h3>
-            <p className="other-services__price">A partir de R$ 399,90</p>
+            <p>A partir de R$ 399,90</p>
             <p>
               Acompanhamento de nutrição esportiva individualizado, de
               acordo com seus objetivos e sua rotina.
@@ -30,13 +33,14 @@ export function OtherServices() {
               messageKey="nutricao"
               variant="secondary"
               label="Falar sobre Nutrição"
+              className="mt-3"
             />
           </Reveal>
 
-          <Reveal delay={80} className="other-services__card">
-            <IconDumbbell className="other-services__card-icon" />
+          <Reveal delay={80} className="bg-brand-graphite border border-brand-line rounded-[6px] p-6">
+            <IconDumbbell className="w-[26px] h-[26px] text-brand-orange mb-3" />
             <h3>Treinamento</h3>
-            <p className="other-services__price">A partir de R$ 299,90</p>
+            <p>A partir de R$ 299,90</p>
             <p>
               Planejamento individualizado de treinamento de musculação
               para você executar na academia.
@@ -46,6 +50,7 @@ export function OtherServices() {
               messageKey="treinamento"
               variant="secondary"
               label="Falar sobre Treinamento"
+              className="mt-3"
             />
           </Reveal>
         </div>

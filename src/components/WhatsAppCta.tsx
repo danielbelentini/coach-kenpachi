@@ -13,6 +13,17 @@ type WhatsAppCtaProps = {
   className?: string;
 };
 
+const BASE_CLASSES =
+  "inline-flex items-center gap-[0.6rem] font-bold rounded-[6px] transition-all duration-[220ms] min-h-12 hover:opacity-[0.88] focus-visible:opacity-[0.88]";
+
+const VARIANT_CLASSES: Record<Variant, string> = {
+  primary: "px-6 py-[0.9rem] bg-brand-orange text-white hover:bg-brand-orange-dark",
+  secondary:
+    "px-6 py-[0.9rem] bg-transparent text-white border-[1.5px] border-brand-line hover:border-brand-orange hover:text-brand-orange",
+  floating:
+    "w-14 h-14 p-0 justify-center rounded-full bg-brand-orange text-white shadow-[0_6px_18px_rgba(0,0,0,0.35)] hover:bg-brand-orange-dark",
+};
+
 /**
  * Único componente responsável por gerar links de WhatsApp.
  * Todos os CTAs da página (contextuais e o botão flutuante) usam este
@@ -32,7 +43,7 @@ export function WhatsAppCta({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`btn-whatsapp btn-whatsapp--${variant} ${className}`.trim()}
+      className={`${BASE_CLASSES} ${VARIANT_CLASSES[variant]} ${className}`.trim()}
       onClick={() => trackWhatsAppClick(ctaLocation)}
       aria-label={variant === "floating" ? label : undefined}
     >

@@ -58,37 +58,58 @@ export function SiteNav() {
     <>
       <button
         type="button"
-        className="nav-toggle"
+        className="header:hidden bg-none border-none text-white p-2 cursor-pointer"
         aria-expanded={open}
         aria-controls="site-nav-menu"
         onClick={() => setOpen((prev) => !prev)}
       >
         <span className="sr-only">{open ? "Fechar menu" : "Abrir menu"}</span>
-        <span className={`nav-toggle__icon ${open ? "is-open" : ""}`} aria-hidden="true">
-          <span />
-          <span />
-          <span />
+        <span className="flex flex-col gap-[5px] w-6" aria-hidden="true">
+          <span
+            className={`block h-0.5 bg-current transition-transform duration-[220ms] ${
+              open ? "translate-y-[7px] rotate-45" : ""
+            }`}
+          />
+          <span
+            className={`block h-0.5 bg-current transition-opacity duration-[220ms] ${
+              open ? "opacity-0" : ""
+            }`}
+          />
+          <span
+            className={`block h-0.5 bg-current transition-transform duration-[220ms] ${
+              open ? "-translate-y-[7px] -rotate-45" : ""
+            }`}
+          />
         </span>
       </button>
 
       <nav
         id="site-nav-menu"
-        className={`site-nav ${open ? "site-nav--open" : ""}`}
+        className={`fixed inset-[64px_0_0_0] bg-brand-graphite py-8 px-5 md:px-8 transition-all duration-[220ms] header:static header:inset-auto header:bg-transparent header:p-0 header:opacity-100 header:translate-y-0 header:pointer-events-auto ${
+          open ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
+        }`}
         aria-label="Navegação principal"
       >
-        <ul>
-          {NAV_ITEMS.map((item) => (
-            <li key={item.href}>
-              <a
-                href={item.href}
-                className={active === item.href ? "is-active" : ""}
-                aria-current={active === item.href ? "true" : undefined}
-                onClick={() => setOpen(false)}
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
+        <ul className="flex flex-col gap-5 text-xl font-semibold header:flex-row header:gap-7 header:text-[0.95rem]">
+          {NAV_ITEMS.map((item) => {
+            const isActive = active === item.href;
+            return (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  className={`hover:opacity-75 focus-visible:opacity-75 header:inline-block header:py-1 header:border-b-2 header:border-transparent header:hover:text-brand-orange header:hover:opacity-75 header:focus-visible:text-brand-orange header:focus-visible:opacity-75 ${
+                    isActive
+                      ? "text-brand-orange header:border-brand-orange"
+                      : ""
+                  }`}
+                  aria-current={isActive ? "true" : undefined}
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </>

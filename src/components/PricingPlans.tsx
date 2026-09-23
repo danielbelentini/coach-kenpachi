@@ -32,39 +32,60 @@ const PLANS = [
   },
 ];
 
+const BADGE_VARIANT_CLASSES: Record<"orange" | "green", string> = {
+  orange: "bg-brand-orange",
+  green: "bg-brand-green",
+};
+
 export function PricingPlans() {
   return (
-    <div className="pricing">
+    <div className="mt-12 pt-10 border-t border-brand-line">
       <Reveal>
-        <h3 className="pricing__heading">Escolha o período do seu acompanhamento</h3>
+        <h3 className="text-center mb-8">Escolha o período do seu acompanhamento</h3>
       </Reveal>
 
-      <div className="pricing__grid">
+      <div className="grid gap-5 md:grid-cols-3 md:items-stretch">
         {PLANS.map((plan, index) => (
           <Reveal
             key={plan.name}
             delay={index * 80}
-            className={`pricing__card ${plan.badge ? "pricing__card--highlighted" : ""}`.trim()}
+            className={`relative bg-brand-graphite border rounded-[10px] px-6 py-7 text-center flex flex-col gap-[0.35rem] ${
+              plan.badge ? "border-brand-orange" : "border-brand-line"
+            }`}
           >
             {plan.badge && (
-              <span className={`badge badge--${plan.badge.variant}`}>
+              <span
+                className={`inline-block text-white font-bold text-[0.8rem] px-[0.85rem] py-[0.35rem] rounded-full self-center mb-2 ${
+                  BADGE_VARIANT_CLASSES[plan.badge.variant]
+                }`}
+              >
                 {plan.badge.label}
               </span>
             )}
-            <h4 className="pricing__plan-name">{plan.name}</h4>
-            <p className="pricing__price">
+            <h4 className="font-bold text-base uppercase tracking-[0.04em] text-brand-muted mb-1">
+              {plan.name}
+            </h4>
+            <p className="text-white font-extrabold text-[1.6rem] mb-0">
               {plan.price}
               {plan.priceSuffix && (
-                <span className="pricing__price-suffix">{plan.priceSuffix}</span>
+                <span className="text-base font-semibold text-brand-muted ml-1">
+                  {plan.priceSuffix}
+                </span>
               )}
             </p>
-            {plan.perMonth && <p className="pricing__per-month">{plan.perMonth}</p>}
-            {plan.savings && <p className="pricing__savings">{plan.savings}</p>}
+            {plan.perMonth && (
+              <p className="text-brand-muted text-[0.9rem] mb-0">{plan.perMonth}</p>
+            )}
+            {plan.savings && (
+              <p className="text-brand-orange font-bold text-[0.85rem] mb-0">
+                {plan.savings}
+              </p>
+            )}
           </Reveal>
         ))}
       </div>
 
-      <p className="pricing__note">
+      <p className="mt-6 text-center text-[0.85rem]">
         Parcelamento disponível. Consulte as condições pelo WhatsApp.
       </p>
     </div>

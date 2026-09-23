@@ -16,7 +16,7 @@ import { useEffect } from "react";
  */
 export function HeaderScrollOffset() {
   useEffect(() => {
-    const header = document.querySelector(".site-header");
+    const header = document.querySelector("header");
     if (!header) return;
 
     function setOffset() {

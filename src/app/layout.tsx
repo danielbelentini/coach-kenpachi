@@ -82,7 +82,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={anton.variable}>
+    <html
+      lang="pt-BR"
+      className={`${anton.variable} scroll-smooth motion-reduce:scroll-auto scroll-pt-[var(--header-height)]`}
+    >
       <head>
         <GoogleTagManagerScript />
         <script
@@ -93,7 +96,10 @@ export default function RootLayout({
       </head>
       <body>
         <GoogleTagManagerNoScript />
-        <a href="#main-content" className="skip-link">
+        <a
+          href="#main-content"
+          className="absolute -top-full left-4 bg-brand-orange text-white px-5 py-3 rounded-[6px] z-[1000] transition-[top] duration-[220ms] focus:top-4"
+        >
           Pular para o conteúdo principal
         </a>
         {children}

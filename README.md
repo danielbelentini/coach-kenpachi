@@ -1,9 +1,9 @@
 # Landing Page — Coach Kenpachi
 
 Landing page de conversão para Coach Kenpachi (Consultoria Completa de
-nutrição + treinamento), construída em **Next.js + React + TypeScript com
-Static Export**. O resultado do build é HTML/CSS/JS puro — não depende de
-Node.js, banco de dados ou backend em produção.
+nutrição + treinamento), construída em **Next.js + React + TypeScript +
+Tailwind CSS, com Static Export**. O resultado do build é HTML/CSS/JS
+puro — não depende de Node.js, banco de dados ou backend em produção.
 
 > **V2**: esta versão implementa o briefing de evolução da página (nova
 > seção "Mais do que seguir um protocolo" em três blocos, planos de preço
@@ -12,6 +12,12 @@ Node.js, banco de dados ou backend em produção.
 > número de WhatsApp real). A identidade visual, os componentes e a
 > arquitetura da V1 foram preservados — apenas o conteúdo e as seções
 > pedidas no briefing V2 foram alterados.
+>
+> **Migração para Tailwind CSS**: o CSS customizado (~1280 linhas de
+> classes BEM como `.hero__inner`, `.btn-whatsapp--primary`) foi
+> substituído por Tailwind CSS v4. O resultado visual é idêntico — só a
+> forma de escrever o CSS mudou. Ver seção 7.1 para detalhes de como isso
+> foi organizado.
 
 ## 1. Estrutura do projeto
 
@@ -26,16 +32,17 @@ kenpachi/
 │   ├── app/
 │   │   ├── layout.tsx           # Metadata, JSON-LD, GTM, skip-link
 │   │   ├── page.tsx             # Composição das seções da landing page
-│   │   ├── globals.css          # Tokens de marca, layout, acessibilidade
+│   │   ├── globals.css          # @import "tailwindcss" + tokens de marca (@theme) + base layer
 │   │   ├── sitemap.ts           # Gera sitemap.xml estático no build
 │   │   └── robots.ts            # Gera robots.txt estático no build
-│   ├── components/              # Um componente por seção da página
+│   ├── components/              # Um componente por seção da página (classes Tailwind direto no JSX)
 │   ├── config/
 │   │   ├── site.ts              # WhatsApp, mensagens, links — config central
 │   │   └── faq.ts               # As 7 perguntas/respostas do FAQ (fácil de editar)
 │   └── lib/
 │       └── analytics.ts         # Camada única de eventos GA4/GTM
 ├── next.config.mjs               # output: 'export', images.unoptimized
+├── postcss.config.mjs            # Plugin do Tailwind v4
 ├── package.json
 └── tsconfig.json
 ```
@@ -142,12 +149,40 @@ prioridade sobre a configuração manual do painel).
 | `@types/node`, `@types/react`, `@types/react-dom` | mais recentes | Tipos compatíveis com Node 20+/22 e React 19. |
 | `eslint` | `^9.20.0` | Qualidade de código em desenvolvimento (não entra no bundle final). ESLint 8 está fora de manutenção. |
 | `eslint-config-next` | `^16.3.3` | Config oficial do Next.js, já no formato *flat config* (`eslint.config.mjs`) — o comando `next lint` foi removido a partir da v16. |
+| `tailwindcss` | `^4.3.3` | Motor de CSS utilitário — ver seção 7.1 abaixo. |
+| `@tailwindcss/postcss` | `^4.3.3` | Plugin PostCSS do Tailwind v4 (`postcss.config.mjs`). |
 
 Nenhuma biblioteca de UI, animação, ou formulário foi adicionada — todas as
 interações (menu, scroll spy, FAQ, reveal ao rolar) foram implementadas
 com React e APIs nativas do navegador (`IntersectionObserver`, elemento
 `<details>`), conforme a seção 26 do briefing (evitar dependências
 desnecessárias).
+
+### 7.1 Como o Tailwind foi organizado
+
+O projeto usa a configuração "CSS-first" do Tailwind v4 (sem
+`tailwind.config.js` — tudo fica em `src/app/globals.css`):
+
+- **`@theme`**: define os tokens de marca (cores, fontes, breakpoints
+  extras) como variáveis CSS. Cada token vira automaticamente uma ou mais
+  classes utilitárias. As cores de marca usam o prefixo `brand-` (ex.:
+  `bg-brand-orange`, `text-brand-graphite`) de propósito, para nunca serem
+  confundidas com as paletas padrão do Tailwind (`orange-500` é uma cor
+  totalmente diferente do nosso laranja de marca, `#fa4c16`).
+- **Breakpoints extras**: além do `sm`(640px)/`md`(768px) padrão do
+  Tailwind, o layout original usa alguns pontos de quebra específicos,
+  registrados em `@theme` e disponíveis como variantes normais:
+  `about:`(800px), `case:`(860px), `header:`(900px), `goals:`(960px).
+- **`@layer base`**: só o que dependeria da mesma classe repetida em toda
+  seção — tipografia de `h1`/`h2`/`h3`/`p`, cor/fonte do `body`, e a
+  transição em fade de todo link/botão (pedido explícito do cliente, uma
+  regra global em vez de `transition-colors` repetido em cada `<a>`).
+- **Tudo o resto** (cada seção, card, botão, grid) é classe utilitária do
+  Tailwind direto no `className` de cada componente — não existe mais
+  nenhuma classe BEM customizada (`.hero__inner`, `.btn-whatsapp--primary`
+  etc.) no projeto.
+- **`sr-only`**: usa a classe nativa do Tailwind (idêntica à que o projeto
+  tinha customizado antes) — nenhuma mudança necessária nesses usos.
 
 ### Sobre os avisos de `npm warn deprecated`
 
@@ -197,6 +232,7 @@ exibir esses avisos. Novos avisos de depreciação podem surgir com o tempo
 - [x] Apenas os componentes com interação real usam `"use client"` (nav, FAQ, reveal, botões de WhatsApp).
 - [x] Imagem do logo usa `next/image` com carregamento prioritário apenas no Header.
 - [x] Sem animações contínuas, parallax ou efeitos 3D.
+- [x] Tailwind gera só o CSS das classes realmente usadas no projeto (detecção automática de conteúdo, sem necessidade de configurar `content: []`) — o CSS final publicado fica pequeno e sem regras não utilizadas.
 
 ## 11. Pontos que precisam ser validados com o cliente (V2)
 

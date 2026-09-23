@@ -18,23 +18,30 @@ const STEPS = [
 
 export function HowItWorks() {
   return (
-    <section id="como-funciona" className="section how-it-works" aria-labelledby="how-heading">
-      <div className="container">
+    <section
+      id="como-funciona"
+      className="py-[clamp(3rem,6vw,5.5rem)]"
+      aria-labelledby="how-heading"
+    >
+      <div className="max-w-[1180px] mx-auto px-5 md:px-8">
         <Reveal>
           <h2 id="how-heading">
-            Como <span className="text-accent">funciona</span>
+            Como <span className="text-brand-orange">funciona</span>
           </h2>
-          <p className="section__lead">
+          <p className="max-w-[56ch] text-[1.05rem]">
             O acompanhamento começa entendendo você antes de definir o
             planejamento.
           </p>
         </Reveal>
 
-        <ol className="how-it-works__list">
+        <ol className="grid gap-6 mt-10 md:grid-cols-3">
           {STEPS.map((step, index) => (
             <Reveal key={step.title} delay={index * 100}>
-              <li className="how-it-works__item">
-                <span className="how-it-works__index" aria-hidden="true">
+              <li className="flex gap-4 items-start">
+                <span
+                  className="shrink-0 w-10 h-10 rounded-full bg-brand-orange text-white font-extrabold grid place-items-center"
+                  aria-hidden="true"
+                >
                   {index + 1}
                 </span>
                 <div>
@@ -47,7 +54,7 @@ export function HowItWorks() {
         </ol>
 
         <Reveal delay={320}>
-          <div className="how-it-works__cta">
+          <div className="mt-10 flex justify-center">
             <WhatsAppCta
               ctaLocation="como_funciona"
               messageKey="default"

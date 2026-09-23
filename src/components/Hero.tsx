@@ -7,47 +7,55 @@ import { WhatsAppCta } from "./WhatsAppCta";
  * Coach aqui (briefing V2, seção 6). Ver README, seção "Como trocar a
  * imagem de fundo do Hero".
  */
-const BACKGROUND_IMAGE_URL = "/images/teste-fundo-kenpachi.jpg";
+const BACKGROUND_IMAGE_URL = "https://placehold.co/1920x1080/1b1d1f/1b1d1f";
 
 export function Hero() {
   return (
     <section
       id="inicio"
-      className="hero"
+      className="relative pt-[clamp(3rem,8vw,6rem)] pb-[clamp(2.5rem,6vw,4rem)] border-b border-brand-line bg-brand-graphite bg-cover bg-center isolate"
       aria-labelledby="hero-heading"
       style={{ backgroundImage: `url(${BACKGROUND_IMAGE_URL})` }}
     >
-      <div className="hero__overlay" aria-hidden="true" />
+      <div
+        className="absolute inset-0 z-0 bg-gradient-to-b from-[rgba(27,29,31,0.82)] to-[rgba(27,29,31,0.9)]"
+        aria-hidden="true"
+      />
 
-      <div className="container hero__inner">
-        <div className="hero__content">
-          <p className="eyebrow">Nutrição esportiva + treinamento</p>
+      <div className="relative z-[1] max-w-[1180px] mx-auto px-5 md:px-8">
+        <div className="max-w-[720px]">
+          <p className="text-brand-orange font-bold mb-3">
+            Nutrição esportiva + treinamento
+          </p>
 
           <h1 id="hero-heading">
             Nutrição e treino planejados para o seu objetivo — e para a sua
             rotina
           </h1>
 
-          <p className="hero__lead">
+          <p className="text-[1.1rem] max-w-[52ch]">
             Coach Kenpachi desenvolve um planejamento individualizado de
             nutrição e treinamento, considerando seus objetivos, sua
             rotina, suas necessidades e sua evolução ao longo do
             acompanhamento.
           </p>
 
-          <div className="hero__actions">
+          <div className="flex flex-wrap items-center gap-5 my-6">
             <WhatsAppCta
               ctaLocation="hero"
               messageKey="default"
               label="Falar com o Coach no WhatsApp"
             />
-            <a href="#consultoria" className="link-inline">
+            <a
+              href="#consultoria"
+              className="text-white underline underline-offset-4 font-semibold hover:opacity-75 hover:text-brand-orange focus-visible:opacity-75 focus-visible:text-brand-orange"
+            >
               Conhecer a Consultoria Completa
             </a>
           </div>
 
-          <p className="hero__highlight">
-            <strong>Consultoria Completa</strong> — nutrição e treinamento
+          <p className="border-l-[3px] border-brand-orange pl-4 text-white text-[0.95rem] max-w-[46ch]">
+            <strong className="text-brand-orange">Consultoria Completa</strong> — nutrição e treinamento
             planejados e acompanhados pelo mesmo profissional.
           </p>
         </div>
