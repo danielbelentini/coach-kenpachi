@@ -19,7 +19,7 @@ export function Goals() {
       className="py-[clamp(3rem,6vw,5.5rem)]"
       aria-labelledby="goals-heading"
     >
-      <div className="max-w-295 mx-auto px-5 md:px-8">
+      <div className="max-w- mx-auto px-5 md:px-8">
         <Reveal>
           <div className="flex flex-col items-center gap-3">
             <h2 id="goals-heading">
@@ -36,7 +36,7 @@ export function Goals() {
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:flex lg:flex-wrap lg:justify-center mt-6">
           {GOALS.map((goal, index) => (
             <Reveal key={goal} delay={index * 40}>
-              <li className="flex w-full items-center gap-[0.6rem] rounded-[6px] border border-brand-line bg-brand-graphite-light p-4 text-center font-semibold text-white transition-colors duration-[220ms] hover:border-brand-orange sm:w-auto lg:w-[260px]">
+              <li className="flex w-full items-center gap-[0.6rem] rounded-md border border-brand-line bg-brand-graphite-light p-4 text-center font-semibold text-white transition-colors duration-220 hover:border-brand-orange sm:w-auto lg:w-65">
                 <IconCheck className="w-5 h-5 shrink-0 text-brand-orange" />
                 <span>{goal}</span>
               </li>

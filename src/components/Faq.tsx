@@ -22,14 +22,14 @@ export function Faq() {
       className="py-[clamp(3rem,6vw,5.5rem)]"
       aria-labelledby="faq-heading"
     >
-      <div className="max-w-[1180px] mx-auto px-5 md:px-8">
+      <div className="max-w-295 mx-auto px-5 md:px-8">
         <Reveal>
           <h2 id="faq-heading">
             Perguntas <span className="text-brand-orange">frequentes</span>
           </h2>
         </Reveal>
 
-        <div className="mt-8 flex flex-col gap-3 max-w-[760px]">
+        <div className="mt-8 flex flex-col gap-3 max-w-190">
           {FAQ_ITEMS.map((item, index) => {
             const isOpen = openIndex === index;
             const questionId = `faq-question-${index}`;
@@ -37,7 +37,7 @@ export function Faq() {
 
             return (
               <Reveal key={item.question} delay={index * 40}>
-                <div className="bg-brand-graphite-light border border-brand-line rounded-[6px] px-5 py-4">
+                <div className="bg-brand-graphite-light border border-brand-line rounded-md px-5 py-4">
                   <button
                     type="button"
                     id={questionId}
