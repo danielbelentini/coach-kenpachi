@@ -44,7 +44,7 @@ export function Faq() {
                     aria-expanded={isOpen}
                     aria-controls={answerId}
                     onClick={() => handleToggle(index, item.question)}
-                    className={`w-full text-left cursor-pointer font-bold list-none flex justify-between items-center gap-4 hover:opacity-75 focus-visible:opacity-75 ${
+                    className={`w-full text-left cursor-pointer font-bold list-none flex justify-between items-center gap-4 hover:text-brand-orange focus-visible:opacity-75 ${
                       isOpen ? "text-brand-orange" : "text-white"
                     }`}
                   >
@@ -67,7 +67,7 @@ export function Faq() {
                     style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
                   >
                     <div className="overflow-hidden">
-                      <p className="pt-[0.85rem] mb-0">{item.answer}</p>
+                      <p className="pt-[0.85rem] mb-0 text-white whitespace-pre-wrap">{item.answer}</p>
                     </div>
                   </div>
                 </div>

@@ -8,8 +8,8 @@
  */
 export const FAQ_ITEMS = [
   {
-    question: "Para quem é a Consultoria Completa?",
-    answer: "[RESPOSTA DO COACH — INSERIR]",
+    question: "Para quem é a consultoria completa?",
+    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \nSed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     question: "Como funciona o primeiro contato e o início do acompanhamento?",

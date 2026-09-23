@@ -7,23 +7,23 @@ import { WhatsAppCta } from "./WhatsAppCta";
  * Coach aqui (briefing V2, seção 6). Ver README, seção "Como trocar a
  * imagem de fundo do Hero".
  */
-const BACKGROUND_IMAGE_URL = "https://placehold.co/1920x1080/1b1d1f/1b1d1f";
+const BACKGROUND_IMAGE_URL = "/images/bg-hero.jpg";
 
 export function Hero() {
   return (
     <section
       id="inicio"
-      className="relative pt-[clamp(3rem,8vw,6rem)] pb-[clamp(2.5rem,6vw,4rem)] border-b border-brand-line bg-brand-graphite bg-cover bg-center isolate"
+      className="relative pt-[clamp(3rem,8vw,6rem)] pb-[clamp(2.5rem,6vw,4rem)] bg-brand-graphite bg-cover isolate bg-top-center"
       aria-labelledby="hero-heading"
       style={{ backgroundImage: `url(${BACKGROUND_IMAGE_URL})` }}
     >
       <div
-        className="absolute inset-0 z-0 bg-gradient-to-b from-[rgba(27,29,31,0.82)] to-[rgba(27,29,31,0.9)]"
+        className="absolute inset-0 z-0 top-0 h-full bg-linear-to-b from-[rgba(27,29,31,0.82)] to-[rgba(27,29,31,0.9)]"
         aria-hidden="true"
       />
 
-      <div className="relative z-[1] max-w-[1180px] mx-auto px-5 md:px-8">
-        <div className="max-w-[720px]">
+      <div className="relative z-1 max-w-295 mx-auto px-5 md:px-8">
+        <div className="max-w-180">
           <p className="text-brand-orange font-bold mb-3">
             Nutrição esportiva + treinamento
           </p>
@@ -44,13 +44,13 @@ export function Hero() {
             <WhatsAppCta
               ctaLocation="hero"
               messageKey="default"
-              label="Falar com o Coach no WhatsApp"
+              label="Falar com o coach no WhatsApp"
             />
             <a
               href="#consultoria"
               className="text-white underline underline-offset-4 font-semibold hover:opacity-75 hover:text-brand-orange focus-visible:opacity-75 focus-visible:text-brand-orange"
             >
-              Conhecer a Consultoria Completa
+              Conhecer a consultoria completa
             </a>
           </div>
 
