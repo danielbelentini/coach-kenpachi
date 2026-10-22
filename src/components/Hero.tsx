@@ -28,9 +28,8 @@ export function Hero() {
             Nutrição esportiva + treinamento
           </p>
 
-          <h1 id="hero-heading">
-            Nutrição e treino planejados para o seu objetivo — e para a sua
-            rotina
+          <h1 id="hero-heading" className="wrap-pre">
+            Nutrição e treino planejados para o<br className="hidden sm:block" /> seu objetivo e para<br className="hidden sm:block" /> a sua rotina
           </h1>
 
           <p className="text-[1.1rem] max-w-[52ch]">
