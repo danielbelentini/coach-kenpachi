@@ -22,6 +22,8 @@ const CASES = [
     id: "marcelo",
     label: "Case Marcelo",
     title: "Mais de 20 kg eliminados em 6 meses",
+    srcBefore: "/images/depoimentos/marcelo-01.avif",
+    srcAfter: "/images/depoimentos/marcelo-02.avif",
     paragraphs: [
       "Marcelo iniciou o acompanhamento buscando mudar sua composição corporal e sua rotina. Ao longo de seis meses, o trabalho envolveu alimentação, treinamento e mudanças de rotina, com ajustes de acordo com sua evolução e dificuldades.",
       "Ao final do período, foram mais de 20 kg eliminados, além de melhora nos resultados apresentados nos exames acompanhados durante o processo.",
@@ -30,18 +32,26 @@ const CASES = [
     afterAlt: "Foto de depois do Marcelo — imagem provisória, será substituída pela foto real",
   },
   {
-    id: "placeholder-2",
-    label: null,
-    title: null,
-    paragraphs: null,
+    id: "neto",
+    label: "Depoimento Neto Matos",
+    title: "Título para o Neto aqui",
+    srcBefore: "/images/depoimentos/neto-01.avif",
+    srcAfter: "/images/depoimentos/neto-02.avif",
+    paragraphs: [
+      "Depoimento do Neto Matos — placeholder, inserir com autorização",
+    ],
     beforeAlt: "Foto de antes do cliente — placeholder, inserir com autorização",
     afterAlt: "Foto de depois do cliente — placeholder, inserir com autorização",
   },
   {
-    id: "placeholder-3",
-    label: null,
-    title: null,
-    paragraphs: null,
+    id: "everton",
+    label: "Depoimento Everton Silva",
+    title: "Título para o Everton aqui",
+    srcBefore: "/images/depoimentos/everton-01.avif",
+    srcAfter: "/images/depoimentos/everton-02.avif",
+    paragraphs: [
+      "Depoimento do Everton Silva — placeholder, inserir com autorização",
+    ],
     beforeAlt: "Foto de antes do cliente — placeholder, inserir com autorização",
     afterAlt: "Foto de depois do cliente — placeholder, inserir com autorização",
   },
@@ -54,7 +64,7 @@ export function Results() {
       className="py-[clamp(3rem,6vw,5.5rem)]"
       aria-labelledby="results-heading"
     >
-      <div className="max-w-[1180px] mx-auto px-5 md:px-8">
+      <div className="max-w-295 mx-auto px-5 md:px-8">
         <Reveal>
           <AccentMark />
           <h2 id="results-heading">
@@ -80,7 +90,7 @@ export function Results() {
               <div className="flex gap-4 w-full case:w-[46%] case:max-w-[460px] case:shrink-0">
                 <figure className="flex-1 m-0 flex flex-col gap-[0.6rem]">
                   <img
-                    src="https://placehold.co/450x600/26292c/26292c"
+                    src={item.srcBefore}
                     alt={item.beforeAlt}
                     className="w-full aspect-[3/4] border border-brand-line rounded-[6px] object-cover block"
                     width={450}
@@ -92,7 +102,7 @@ export function Results() {
                 </figure>
                 <figure className="flex-1 m-0 flex flex-col gap-[0.6rem]">
                   <img
-                    src="https://placehold.co/450x600/26292c/26292c"
+                    src={item.srcAfter}
                     alt={item.afterAlt}
                     className="w-full aspect-[3/4] border border-brand-line rounded-[6px] object-cover block"
                     width={450}
@@ -117,7 +127,7 @@ export function Results() {
                   </>
                 ) : (
                   <p className="text-brand-orange font-bold text-[0.9rem] mb-0">
-                    [DEPOIMENTO REAL — INSERIR]
+                    Teste
                   </p>
                 )}
               </div>
