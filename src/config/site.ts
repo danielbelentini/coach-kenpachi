@@ -24,7 +24,7 @@ export const siteConfig = {
   // Deixado vazio de propósito: nenhum link foi fornecido no briefing V2.
   // Enquanto estiver vazio, o rodapé mostra o texto placeholder em vez de
   // um link quebrado ou inventado (ver src/components/InstagramLink.tsx).
-  instagramUrl: "",
+  instagramUrl: "https://www.instagram.com/coach_kenpachi/",
 
   // Mensagens pré-preenchidas definidas no briefing V2 (seção 19).
   // "default" é reutilizada em Hero, Consultoria e CTA final, pois o
