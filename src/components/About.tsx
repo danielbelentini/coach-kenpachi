@@ -19,7 +19,7 @@ export function About() {
             mudança é necessária.
           */}
           <img
-            src="https://placehold.co/480x600/1b1d1f/1b1d1f"
+            src="/images/img-coach-kenpachi.avif"
             alt="Foto do Coach Kenpachi — imagem provisória, será substituída pela foto real"
             className="w-full max-w-[320px] aspect-[4/5] border border-brand-line rounded-[10px] object-cover block"
             width={480}
