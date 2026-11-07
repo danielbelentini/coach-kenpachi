@@ -63,7 +63,8 @@ export function Consultancy() {
         <Reveal delay={280}>
           <div className="mt-10 flex justify-center">
             <WhatsAppCta
-              ctaLocation="consultoria"
+              section="consultoria"
+              button="consultoria_whatsapp"
               messageKey="default"
               label="Quero começar minha Consultoria"
             />

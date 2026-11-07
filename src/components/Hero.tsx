@@ -41,7 +41,8 @@ export function Hero() {
 
           <div className="flex flex-wrap items-center gap-5 my-6">
             <WhatsAppCta
-              ctaLocation="hero"
+              section="hero"
+              button="hero_whatsapp"
               messageKey="default"
               label="Falar com o coach no WhatsApp"
             />

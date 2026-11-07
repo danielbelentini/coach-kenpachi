@@ -5,6 +5,7 @@ import {
   GoogleTagManagerNoScript,
   GoogleTagManagerScript,
 } from "@/components/GoogleTagManager";
+import { ClickTracker } from "@/components/ClickTracker";
 import "./globals.css";
 
 /**
@@ -96,6 +97,7 @@ export default function RootLayout({
       </head>
       <body>
         <GoogleTagManagerNoScript />
+        <ClickTracker />
         <a
           href="#main-content"
           className="absolute -top-full left-4 bg-brand-orange text-white px-5 py-3 rounded-[6px] z-[1000] transition-[top] duration-[220ms] focus:top-4"

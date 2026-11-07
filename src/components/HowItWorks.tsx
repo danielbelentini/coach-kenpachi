@@ -56,7 +56,8 @@ export function HowItWorks() {
         <Reveal delay={320}>
           <div className="mt-10 flex justify-center">
             <WhatsAppCta
-              ctaLocation="como_funciona"
+              section="como_funciona"
+              button="como_funciona_whatsapp"
               messageKey="default"
               label="Falar com o Coach no WhatsApp"
             />

@@ -29,7 +29,8 @@ export function OtherServices() {
               acordo com seus objetivos e sua rotina.
             </p>
             <WhatsAppCta
-              ctaLocation="nutricao"
+              section="outras_formas"
+              button="nutricao_whatsapp"
               messageKey="nutricao"
               variant="secondary"
               label="Falar sobre Nutrição"
@@ -46,7 +47,8 @@ export function OtherServices() {
               para você executar na academia.
             </p>
             <WhatsAppCta
-              ctaLocation="treinamento"
+              section="outras_formas"
+              button="treinamento_whatsapp"
               messageKey="treinamento"
               variant="secondary"
               label="Falar sobre Treinamento"

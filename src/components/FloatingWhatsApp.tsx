@@ -9,7 +9,8 @@ export function FloatingWhatsApp() {
   return (
     <div className="fixed z-[900] right-[max(1.25rem,env(safe-area-inset-right))] bottom-[max(1.25rem,env(safe-area-inset-bottom))]">
       <WhatsAppCta
-        ctaLocation="floating"
+        section="floating"
+        button="floating_whatsapp"
         variant="floating"
         label="Falar no WhatsApp agora"
       />

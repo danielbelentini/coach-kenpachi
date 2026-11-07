@@ -26,7 +26,8 @@ export function Header() {
 
         <div className="hidden header:block">
           <WhatsAppCta
-            ctaLocation="header"
+            section="header"
+            button="header_whatsapp"
             variant="secondary"
             label="Fale com o Coach"
           />

@@ -1,14 +1,10 @@
-"use client";
-
 import { siteConfig } from "@/config/site";
-import { trackInstagramClick } from "@/lib/analytics";
 
 /**
- * Único pedaço interativo do rodapé. Isolado em um Client Component próprio
- * para que Footer.tsx continue sendo um Server Component — funções
- * (onClick) não podem ser passadas como prop para um Client Component a
- * partir de um Server Component, mas podem ser definidas aqui dentro, pois
- * este arquivo já é "use client".
+ * Link do Instagram no rodapé.
+ *
+ * Rastreamento: apenas atributos de marcação (data-track-*). O evento
+ * social_click é enviado pelo listener delegado em src/lib/click-tracking.ts.
  *
  * [LINK DO INSTAGRAM — INSERIR]
  * Nenhum link foi fornecido no briefing V2. Enquanto siteConfig.instagramUrl
@@ -30,7 +26,9 @@ export function InstagramLink() {
       target="_blank"
       rel="noopener noreferrer"
       className="hover:opacity-75 hover:text-brand-orange focus-visible:opacity-75 focus-visible:text-brand-orange"
-      onClick={() => trackInstagramClick("footer")}
+      data-track-event="social_click"
+      data-track-section="footer"
+      data-track-button="footer_instagram"
     >
       Instagram
     </a>

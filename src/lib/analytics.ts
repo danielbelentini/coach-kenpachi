@@ -4,7 +4,11 @@
  * Nenhum componente deve chamar `window.dataLayer` diretamente — todos usam
  * as funções abaixo, para manter os eventos documentados e consistentes.
  *
- * Evento principal: `whatsapp_click`, sempre com `cta_location`.
+ * Cliques (whatsapp_click, navigation_click, social_click) NÃO passam por
+ * funções de componentes: são capturados por um único listener delegado
+ * (src/lib/click-tracking.ts), a partir de atributos data-* nos links.
+ * Aqui ficam o `pushToDataLayer` compartilhado e os eventos que não são
+ * cliques em links (faq_interaction e scroll_depth).
  * Ver docs/EVENTOS.md para a lista completa de eventos implementados.
  */
 
@@ -15,36 +19,13 @@ declare global {
 }
 
 /**
- * Valores definidos no briefing V2 (seção 23), em português, para bater
- * exatamente com o que for configurado como gatilho no GTM/GA4.
- * "header" foi mantido como valor extra (não listado no briefing) porque o
- * botão do cabeçalho também é um clique real de WhatsApp que vale medir.
+ * Envia um evento ao dataLayer sem nunca substituir um array existente
+ * (o GTM cria/usa o mesmo `window.dataLayer`).
  */
-export type CtaLocation =
-  | "header"
-  | "hero"
-  | "consultoria"
-  | "como_funciona"
-  | "resultados"
-  | "nutricao"
-  | "treinamento"
-  | "final"
-  | "floating";
-
-function pushToDataLayer(payload: Record<string, unknown>) {
+export function pushToDataLayer(payload: Record<string, unknown>) {
   if (typeof window === "undefined") return;
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(payload);
-}
-
-/** Evento principal de conversão: clique em qualquer CTA de WhatsApp. */
-export function trackWhatsAppClick(ctaLocation: CtaLocation) {
-  pushToDataLayer({ event: "whatsapp_click", cta_location: ctaLocation });
-}
-
-/** Clique no link secundário do Instagram (canal secundário, não concorre com o WhatsApp). */
-export function trackInstagramClick(location: "footer") {
-  pushToDataLayer({ event: "instagram_click", cta_location: location });
 }
 
 /** Interação com um item do FAQ (abrir uma pergunta). */

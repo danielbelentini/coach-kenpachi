@@ -24,13 +24,14 @@ puro — não depende de Node.js, banco de dados ou backend em produção.
 ```text
 kenpachi/
 ├── docs/
-│   └── EVENTOS.md              # Documentação dos eventos GA4/GTM
+│   ├── EVENTOS.md              # Padrão de rastreamento via dataLayer (GA4/GTM)
+│   └── GTM-GA4-PASSO-A-PASSO.md # Configuração do GTM e do GA4
 ├── public/
 │   └── images/
 │       └── logo-coach-kenpachi.png
 ├── src/
 │   ├── app/
-│   │   ├── layout.tsx           # Metadata, JSON-LD, GTM, skip-link
+│   │   ├── layout.tsx           # Metadata, JSON-LD, GTM, <ClickTracker />, skip-link
 │   │   ├── page.tsx             # Composição das seções da landing page
 │   │   ├── globals.css          # @import "tailwindcss" + tokens de marca (@theme) + base layer
 │   │   ├── sitemap.ts           # Gera sitemap.xml estático no build
@@ -40,7 +41,8 @@ kenpachi/
 │   │   ├── site.ts              # WhatsApp, mensagens, links — config central
 │   │   └── faq.ts               # As 7 perguntas/respostas do FAQ (fácil de editar)
 │   └── lib/
-│       └── analytics.ts         # Camada única de eventos GA4/GTM
+│       ├── analytics.ts         # pushToDataLayer + eventos faq_interaction / scroll_depth
+│       └── click-tracking.ts    # Listener delegado: whatsapp_click, navigation_click, social_click
 ├── next.config.mjs               # output: 'export', images.unoptimized
 ├── postcss.config.mjs            # Plugin do Tailwind v4
 ├── package.json
@@ -77,8 +79,8 @@ Acesse `http://localhost:3000`.
 
 ## 4. Configurar variáveis de ambiente (opcional)
 
-Copie `.env.example` para `.env.local` e preencha o ID do GTM, se já
-disponível:
+Copie `.env.example` para `.env.local`. O ID do GTM deste site é
+`GTM-KK7FKGT5` (variável `NEXT_PUBLIC_GTM_ID`):
 
 ```bash
 cp .env.example .env.local
@@ -346,3 +348,29 @@ costuma ficar escondida atrás desse wrapper).
 no topo de `src/app/robots.ts` e `src/app/sitemap.ts`. Se você criar novas
 rotas de metadata (`opengraph-image.tsx`, `icon.tsx`, etc.), adicione a
 mesma linha nelas também.
+
+## 16. Rastreamento de cliques (dataLayer / GTM / GA4)
+
+O site segue o padrão de rastreamento via dataLayer usado nos sites dos
+parceiros (padrão D.R.A. Seguros). Documentação completa, com a tabela de
+todos os elementos rastreados, em [`docs/EVENTOS.md`](docs/EVENTOS.md).
+
+Resumo:
+
+- Eventos: `whatsapp_click`, `navigation_click`, `social_click`, sempre com
+  exatamente cinco parâmetros: `page_name`, `section_name`, `button_name`,
+  `button_label`, `link_url`.
+- Um único listener de clique por delegação (`src/lib/click-tracking.ts`),
+  montado uma vez no layout por `<ClickTracker />`. Componentes não têm
+  `onClick` de tracking.
+- Para rastrear um novo link basta adicionar atributos:
+  - WhatsApp: `data-wa-section` e `data-wa-button` (ou as props `section` e
+    `button` do `WhatsAppCta`).
+  - Outra página / rede social: `data-track-event` (`navigation_click` ou
+    `social_click`), `data-track-section` e `data-track-button`.
+- Âncoras da mesma página, `mailto:` e `tel:` não geram evento.
+- GTM: `NEXT_PUBLIC_GTM_ID=GTM-KK7FKGT5`. A variável é gravada no build:
+  defina-a no Netlify (Site configuration → Environment variables) e faça um
+  novo deploy depois de qualquer alteração.
+- Teste: abra o site, rode `window.dataLayer` no console e clique nos botões;
+  depois valide no Preview do GTM e no DebugView do GA4.

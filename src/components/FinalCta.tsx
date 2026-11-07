@@ -33,7 +33,8 @@ export function FinalCta() {
             sua rotina.
           </p>
           <WhatsAppCta
-            ctaLocation="final"
+            section="cta_final"
+            button="cta_final_whatsapp"
             messageKey="default"
             label="Falar com o Coach no WhatsApp"
           />

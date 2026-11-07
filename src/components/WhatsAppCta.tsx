@@ -1,12 +1,14 @@
 "use client";
 
 import { buildWhatsAppUrl, type WhatsAppMessageKey } from "@/config/site";
-import { trackWhatsAppClick, type CtaLocation } from "@/lib/analytics";
 
 type Variant = "primary" | "secondary" | "floating";
 
 type WhatsAppCtaProps = {
-  ctaLocation: CtaLocation;
+  /** Valor de `section_name` (data-wa-section). Ex.: "hero", "cta_final". */
+  section: string;
+  /** Valor de `button_name` (data-wa-button). Único por elemento. */
+  button: string;
   label?: string;
   messageKey?: WhatsAppMessageKey;
   variant?: Variant;
@@ -28,9 +30,14 @@ const VARIANT_CLASSES: Record<Variant, string> = {
  * Único componente responsável por gerar links de WhatsApp.
  * Todos os CTAs da página (contextuais e o botão flutuante) usam este
  * componente, garantindo que a conversão principal seja sempre a mesma ação.
+ *
+ * Rastreamento: o componente só carrega atributos de marcação
+ * (data-wa-section / data-wa-button). O evento whatsapp_click é enviado pelo
+ * listener delegado em src/lib/click-tracking.ts — nada de onClick aqui.
  */
 export function WhatsAppCta({
-  ctaLocation,
+  section,
+  button,
   label = "Falar no WhatsApp",
   messageKey = "default",
   variant = "primary",
@@ -44,7 +51,8 @@ export function WhatsAppCta({
       target="_blank"
       rel="noopener noreferrer"
       className={`${BASE_CLASSES} ${VARIANT_CLASSES[variant]} ${className}`.trim()}
-      onClick={() => trackWhatsAppClick(ctaLocation)}
+      data-wa-section={section}
+      data-wa-button={button}
       aria-label={variant === "floating" ? label : undefined}
     >
       <WhatsAppIcon />
