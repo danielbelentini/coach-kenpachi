@@ -18,7 +18,7 @@ export const siteConfig = {
   siteUrl: "https://www.coachkenpachi.com.br",
 
   // Número de WhatsApp Business fornecido no briefing V2.
-  whatsappNumber: "5511949080965",
+  whatsappNumber: "5511927444068",
 
   // [LINK DO INSTAGRAM — INSERIR]
   // Deixado vazio de propósito: nenhum link foi fornecido no briefing V2.
