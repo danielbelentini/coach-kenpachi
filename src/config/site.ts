@@ -31,11 +31,11 @@ export const siteConfig = {
   // briefing usa o mesmo texto nos três lugares.
   whatsappMessages: {
     default:
-      "Olá, Coach! Conheci seu trabalho pela página e gostaria de saber mais sobre a Consultoria Completa. Meu objetivo é:",
+      "Olá, coach! Conheci seu trabalho pela página e gostaria de saber mais sobre a Consultoria Completa.",
     nutricao:
-      "Olá, Coach! Conheci seu trabalho pela página e gostaria de saber mais sobre o acompanhamento de Nutrição. Meu objetivo é:",
+      "Olá, coach! Conheci seu trabalho pela página e gostaria de saber mais sobre o acompanhamento de Nutrição.",
     treinamento:
-      "Olá, Coach! Conheci seu trabalho pela página e gostaria de saber mais sobre o planejamento de Treinamento. Meu objetivo é:",
+      "Olá, coach! Conheci seu trabalho pela página e gostaria de saber mais sobre o planejamento de Treinamento.",
   },
 } as const;
 
