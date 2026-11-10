@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { siteConfig } from "@/config/site";
+import { CookiePreferencesButton } from "./CookiePreferencesButton";
 import { InstagramLink } from "./InstagramLink";
 
 const NAV_LINK_CLASSES =
@@ -45,6 +46,21 @@ export function Footer() {
         <p>
           © {year} {siteConfig.name}. Todos os direitos reservados.
         </p>
+        <nav
+          className="flex flex-wrap gap-x-5 gap-y-2"
+          aria-label="Privacidade"
+        >
+          <a
+            href="/politica-de-privacidade/"
+            className={NAV_LINK_CLASSES}
+            data-track-event="navigation_click"
+            data-track-section="footer"
+            data-track-button="footer_politica_privacidade"
+          >
+            Política de Privacidade
+          </a>
+          <CookiePreferencesButton className={NAV_LINK_CLASSES} />
+        </nav>
       </div>
     </footer>
   );
