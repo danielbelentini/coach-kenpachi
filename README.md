@@ -25,13 +25,16 @@ puro — não depende de Node.js, banco de dados ou backend em produção.
 kenpachi/
 ├── docs/
 │   ├── EVENTOS.md              # Padrão de rastreamento via dataLayer (GA4/GTM)
-│   └── GTM-GA4-PASSO-A-PASSO.md # Configuração do GTM e do GA4
+│   ├── GTM-GA4-PASSO-A-PASSO.md # Configuração do GTM e do GA4
+│   └── CONSENTIMENTO.md        # Barra de cookies, consentimento e Política de Privacidade
 ├── public/
 │   └── images/
 │       └── logo-coach-kenpachi.png
 ├── src/
 │   ├── app/
-│   │   ├── layout.tsx           # Metadata, JSON-LD, GTM, <ClickTracker />, skip-link
+│   │   ├── layout.tsx           # Metadata, JSON-LD, <ClickTracker />, <ConsentManager />, skip-link
+│   │   ├── politica-de-privacidade/
+│   │   │   └── page.tsx         # Página /politica-de-privacidade/ (LGPD)
 │   │   ├── page.tsx             # Composição das seções da landing page
 │   │   ├── globals.css          # @import "tailwindcss" + tokens de marca (@theme) + base layer
 │   │   ├── sitemap.ts           # Gera sitemap.xml estático no build
@@ -39,9 +42,11 @@ kenpachi/
 │   ├── components/              # Um componente por seção da página (classes Tailwind direto no JSX)
 │   ├── config/
 │   │   ├── site.ts              # WhatsApp, mensagens, links — config central
+│   │   ├── privacy.ts           # Dados e [PREENCHER] da Política de Privacidade
 │   │   └── faq.ts               # As 7 perguntas/respostas do FAQ (fácil de editar)
 │   └── lib/
-│       ├── analytics.ts         # pushToDataLayer + eventos faq_interaction / scroll_depth
+│       ├── consent.ts           # Escolhas de cookies (localStorage, versão, data)
+│       ├── analytics.ts         # pushToDataLayer (só com consentimento) + faq_interaction / scroll_depth
 │       └── click-tracking.ts    # Listener delegado: whatsapp_click, navigation_click, social_click
 ├── next.config.mjs               # output: 'export', images.unoptimized
 ├── postcss.config.mjs            # Plugin do Tailwind v4
@@ -372,5 +377,25 @@ Resumo:
 - GTM: `NEXT_PUBLIC_GTM_ID=GTM-KK7FKGT5`. A variável é gravada no build:
   defina-a no Netlify (Site configuration → Environment variables) e faça um
   novo deploy depois de qualquer alteração.
-- Teste: abra o site, rode `window.dataLayer` no console e clique nos botões;
-  depois valide no Preview do GTM e no DebugView do GA4.
+- O GTM e o `dataLayer` só funcionam **após aceitar cookies analíticos** (seção 17).
+- Teste: abra o site, clique em **Aceitar todos** na barra de cookies, rode
+  `window.dataLayer` no console e clique nos botões; depois valide no Preview
+  do GTM e no DebugView do GA4.
+
+## 17. Cookies, consentimento e Política de Privacidade
+
+O site tem barra de cookies, central de personalização e a página
+`/politica-de-privacidade/` (LGPD). Documentação completa em
+[`docs/CONSENTIMENTO.md`](docs/CONSENTIMENTO.md).
+
+- **GTM e `dataLayer` só com consentimento analítico.** Sem aceite, o GTM não é
+  carregado e nenhum evento é enviado. Recusar ou revogar interrompe a coleta
+  (o site limpa os cookies do Google e recarrega a página).
+- Categorias: necessários (sempre ativos), analíticos e marketing (desativados
+  por padrão). Aceitar e Recusar têm o mesmo destaque.
+- A escolha fica no `localStorage` (data e versão). Para pedir nova escolha a
+  todos, aumente `CONSENT_VERSION` em `src/lib/consent.ts`.
+- Rodapé: "Política de Privacidade" e "Preferências de cookies".
+- **Pendente:** campos `[PREENCHER]` da Política (nome/razão social, CPF/CNPJ,
+  retenção do GA4, medidas de segurança). Ver `src/config/privacy.ts`.
+- O bloco `<noscript>` do GTM foi removido de propósito.

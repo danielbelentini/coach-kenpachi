@@ -7,10 +7,30 @@ cinco parâmetros e mesma forma de marcar os links. Não altere nomes nem
 adicione parâmetros aqui sem alterar o padrão nos demais sites.
 
 - Container GTM deste site: `GTM-KK7FKGT5` (variável `NEXT_PUBLIC_GTM_ID`).
-- Instalação do GTM: `src/components/GoogleTagManager.tsx` (não faz parte do
-  rastreamento de cliques e não foi alterada).
+- Carregamento do GTM: `src/components/GoogleTagManager.tsx`. O GTM só é
+  carregado **após consentimento analítico** (ver seção "Consentimento" abaixo
+  e `docs/CONSENTIMENTO.md`).
 - Rastreamento de cliques: `src/lib/click-tracking.ts` + `src/components/ClickTracker.tsx`.
 - Envio ao `dataLayer`: `src/lib/analytics.ts` (`pushToDataLayer`).
+
+## Consentimento (LGPD)
+
+O rastreamento só funciona se o visitante autorizar **cookies analíticos**:
+
+- Sem autorização, o GTM **não é carregado** e **nenhum evento** é enviado ao
+  `dataLayer` (cliques e rolagem ocorridos antes do aceite são descartados, não
+  enfileirados; o GTM, ao carregar depois do aceite, não processa o que veio
+  antes).
+- Ao aceitar, o GTM é carregado uma única vez e os eventos passam a ser
+  enviados normalmente. Marcos de rolagem (`scroll_depth`) já ultrapassados
+  antes do aceite não são reenviados.
+- Ao revogar (pelo link "Preferências de cookies" do rodapé), o site nega o
+  consentimento, remove os cookies `_ga*`, `_gid` e `_gcl_*` e recarrega a
+  página sem o GTM.
+- Os comandos `consent default/update` (Google Consent Mode v2) enviados ao
+  `dataLayer` são **infraestrutura de consentimento**, não eventos de análise:
+  não têm `event`, não passam pelo padrão de cinco parâmetros e não devem ser
+  usados como gatilho no GTM.
 
 ## Eventos do padrão
 
@@ -125,6 +145,12 @@ Para itens de menu, use ids estáveis (ex.: `trackId`) para formar o
 | `whatsapp_click` | `home`      | `cta_final`     | `cta_final_whatsapp`     | Falar com o Coach no WhatsApp     |
 | `whatsapp_click` | `home`      | `floating`      | `floating_whatsapp`      | Falar no WhatsApp agora (`aria-label`: o texto do botão é só para leitor de tela) |
 | `social_click`   | `home`      | `footer`        | `footer_instagram`       | Instagram                         |
+| `navigation_click` | `home`    | `footer`        | `footer_politica_privacidade` | Política de Privacidade      |
+| `navigation_click` | `politica_de_privacidade` | `header` | `privacidade_logo`       | (logo; `aria-label`: Coach Kenpachi — página inicial) |
+| `navigation_click` | `politica_de_privacidade` | `header` | `privacidade_voltar_home` | Voltar para a página inicial |
+| `navigation_click` | `politica_de_privacidade` | `privacidade` | `privacidade_rodape_voltar_home` | ← Voltar para a página inicial |
+| `whatsapp_click` | `politica_de_privacidade` | `politica_privacidade` | `politica_privacidade_whatsapp` | WhatsApp +55 ... (número do site) |
+| `whatsapp_click` | `politica_de_privacidade` | `politica_privacidade` | `politica_privacidade_contato_whatsapp` | (número do site) |
 
 O botão "Fale com o Coach" (`header_whatsapp`) só aparece a partir do
 breakpoint `header`; no mobile o cabeçalho não tem botão de WhatsApp (o botão
@@ -132,8 +158,13 @@ flutuante cobre esse caso).
 
 ### Não rastreados (de propósito)
 
-Esta é uma página única: **todos os links de navegação são âncoras da mesma
-página** e, pelo padrão, não disparam evento.
+Na Home, **todos os links de navegação internos são âncoras da mesma página**
+e, pelo padrão, não disparam evento. A única navegação para outra página é o
+link "Política de Privacidade" do rodapé (rastreado, tabela acima).
+
+Também não geram evento: o botão "Preferências de cookies" (é um botão, não
+um link), os botões da barra e da central de cookies, e o link da barra de
+cookies para a Política (a barra só aparece antes de haver consentimento).
 
 - Logo do cabeçalho (`#inicio`).
 - Menu principal: Consultoria, Como funciona, Resultados, Sobre, FAQ (`#...`).
@@ -147,6 +178,10 @@ páginas, basta marcar os links com `data-track-event="navigation_click"`
 (use `href` com caminho completo, ex.: `/#sobre`).
 
 Não há links externos que não sejam WhatsApp ou rede social, nem `mailto:`.
+
+Na página `/politica-de-privacidade/` (`page_name` = `politica_de_privacidade`)
+o menu da Home não existe: o cabeçalho tem só a logo e "Voltar para a página
+inicial".
 
 ## Eventos fora do padrão (já existentes neste projeto)
 
@@ -174,6 +209,10 @@ Disparado uma única vez por marco de rolagem (25%, 50%, 75%, 100%).
 - `whatsapp_click`: o parâmetro `cta_location` foi **removido**. Os valores
   anteriores viraram `section_name` (e `button_name`, único por botão).
 - `instagram_click` foi **substituído** por `social_click`.
+- O `dataLayer` e o GTM passaram a depender de **consentimento analítico**
+  (seção "Consentimento"). O GTM não é mais injetado no `<head>` e o bloco
+  `<noscript>` do GTM foi removido (sem JavaScript não há como registrar o
+  consentimento).
 
 ## Configuração no GTM/GA4
 

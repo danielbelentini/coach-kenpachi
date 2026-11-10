@@ -1,11 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Anton } from "next/font/google";
 import { siteConfig } from "@/config/site";
-import {
-  GoogleTagManagerNoScript,
-  GoogleTagManagerScript,
-} from "@/components/GoogleTagManager";
 import { ClickTracker } from "@/components/ClickTracker";
+import { ConsentManager } from "@/components/ConsentManager";
 import "./globals.css";
 
 /**
@@ -88,7 +85,6 @@ export default function RootLayout({
       className={`${anton.variable} scroll-smooth motion-reduce:scroll-auto scroll-pt-[var(--header-height)]`}
     >
       <head>
-        <GoogleTagManagerScript />
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
@@ -96,8 +92,8 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <GoogleTagManagerNoScript />
         <ClickTracker />
+        <ConsentManager />
         <a
           href="#main-content"
           className="absolute -top-full left-4 bg-brand-orange text-white px-5 py-3 rounded-[6px] z-[1000] transition-[top] duration-[220ms] focus:top-4"

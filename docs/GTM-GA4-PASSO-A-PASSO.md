@@ -12,6 +12,22 @@ mudado, está marcado com **[conferir na tela]**.
 > navegador (leitura do `dataLayer`). A validação nas ferramentas do Google
 > é feita na sua conta, seguindo os passos 5 e 6.
 
+## Importante: o GTM só carrega com consentimento
+
+O site só carrega o GTM depois que o visitante aceita os **cookies analíticos**
+(barra de cookies ou "Preferências de cookies" no rodapé). Por isso:
+
+- Para **testar** (Preview/Tag Assistant e DebugView), abra o site e clique em
+  **Aceitar todos** (ou ative "Cookies analíticos") antes de esperar que o
+  GTM conecte. Se o Preview não conectar, é porque o consentimento ainda não foi
+  dado. Se você recusou antes, use "Preferências de cookies" no rodapé.
+- O site já envia o estado do **Google Consent Mode v2** ao `dataLayer`
+  (`analytics_storage`, `ad_storage`, `ad_user_data`, `ad_personalization`).
+  Se quiser uma segunda camada dentro do GTM, em cada tag use
+  **Configurações avançadas → Configurações de consentimento** e exija
+  `analytics_storage` nas tags do GA4. **[conferir na tela]**
+- Os comandos `consent` não são eventos de análise: não crie acionador para eles.
+
 ## 0. Antes de começar
 
 1. Faça o deploy do site com `NEXT_PUBLIC_GTM_ID=GTM-KK7FKGT5` (passo 8). Sem isso

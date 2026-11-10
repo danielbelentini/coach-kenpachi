@@ -10,7 +10,14 @@
  * Aqui ficam o `pushToDataLayer` compartilhado e os eventos que não são
  * cliques em links (faq_interaction e scroll_depth).
  * Ver docs/EVENTOS.md para a lista completa de eventos implementados.
+ *
+ * Consentimento: NENHUM evento é enviado ao dataLayer sem autorização para
+ * cookies analíticos (ver src/lib/consent.ts). Eventos ocorridos antes do
+ * aceite são descartados, nunca enfileirados — assim o GTM, ao ser carregado
+ * após o aceite, não processa cliques anteriores ao consentimento.
  */
+
+import { hasAnalyticsConsent } from "@/lib/consent";
 
 declare global {
   interface Window {
@@ -20,10 +27,12 @@ declare global {
 
 /**
  * Envia um evento ao dataLayer sem nunca substituir um array existente
- * (o GTM cria/usa o mesmo `window.dataLayer`).
+ * (o GTM cria/usa o mesmo `window.dataLayer`). Só envia com consentimento
+ * analítico; sem ele, o evento é descartado.
  */
 export function pushToDataLayer(payload: Record<string, unknown>) {
   if (typeof window === "undefined") return;
+  if (!hasAnalyticsConsent()) return;
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(payload);
 }
