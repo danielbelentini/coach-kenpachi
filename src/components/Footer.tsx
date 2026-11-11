@@ -47,7 +47,7 @@ export function Footer() {
           © {year} {siteConfig.name}. Todos os direitos reservados.
         </p>
         <nav
-          className="flex flex-wrap gap-x-5 gap-y-2"
+          className="flex flex-wrap items-start gap-x-5 gap-y-2"
           aria-label="Privacidade"
         >
           <a

@@ -83,9 +83,12 @@ export function SiteNav() {
         </span>
       </button>
 
+      {/* O header usa backdrop-blur, o que faz dele o bloco contêiner deste nav
+          "fixed" (não a janela). Por isso a altura é calculada em relação ao
+          header (top: 100% + 1px da borda; altura: 100dvh - 100% - 1px): o fundo cobre a tela toda abaixo dele. */}
       <nav
         id="site-nav-menu"
-        className={`fixed inset-[64px_0_0_0] bg-brand-graphite py-8 px-5 md:px-8 transition-all duration-[220ms] header:static header:inset-auto header:bg-transparent header:p-0 header:opacity-100 header:translate-y-0 header:pointer-events-auto ${
+        className={`fixed inset-x-0 top-[calc(100%+1px)] h-[calc(100dvh-100%-1px)] overflow-y-auto bg-brand-graphite py-8 px-5 md:px-8 transition-all duration-[220ms] header:static header:inset-auto header:h-auto header:overflow-visible header:bg-transparent header:p-0 header:opacity-100 header:translate-y-0 header:pointer-events-auto ${
           open ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
         }`}
         aria-label="Navegação principal"
