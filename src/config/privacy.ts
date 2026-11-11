@@ -11,13 +11,13 @@ import { siteConfig } from "@/config/site";
 /** Versão e data de vigência do TEXTO da política (diferente de CONSENT_VERSION). */
 export const policyMeta = {
   version: "1.0",
-  updatedAt: "10 de novembro de 2026",
+  updatedAt: "20 de novembro de 2026",
 } as const;
 
 export const privacyConfig = {
   // [PREENCHER] — dados do responsável (pessoa física ou jurídica).
-  controllerName: "[PREENCHER: nome completo ou razão social do responsável]",
-  controllerDocument: "[PREENCHER: CPF ou CNPJ do responsável]",
+  controllerName: "Mauricio Donizete de Castro",
+  controllerDocument: "432.924.738-02",
   brandName: siteConfig.name,
 
   // Canal de privacidade provisório: o WhatsApp já usado no site.

@@ -126,8 +126,8 @@ export default function PrivacyPolicyPage() {
                   data-wa-section="politica_privacidade"
                   data-wa-button="politica_privacidade_whatsapp"
                 >
-                  WhatsApp {privacyConfig.contactLabel}
-                </a>
+                  {privacyConfig.contactLabel}
+                </a> (WhatsApp)
               </li>
             </ul>
             <p>
@@ -157,11 +157,7 @@ export default function PrivacyPolicyPage() {
               conforme as finalidades e as bases legais aplicáveis a esse
               atendimento (arts. 7º e 11 da LGPD), e não com base no
               consentimento de cookies. O aceite ou a recusa de cookies neste
-              site não substitui nem se confunde com essa etapa.{" "}
-              <Fill>
-                [PREENCHER: se houver termo ou aviso específico do atendimento,
-                indicar aqui]
-              </Fill>
+              site não substitui nem se confunde com essa etapa.
             </p>
           </Section>
 
@@ -331,12 +327,10 @@ export default function PrivacyPolicyPage() {
               </li>
               <li>
                 <strong>Dados do Google Analytics:</strong> mantidos pelo
-                período configurado na ferramenta:{" "}
-                <Fill>{privacyConfig.analyticsRetention}</Fill>
+                período configurado na ferramenta - os dados de eventos e usuários utilizados nos relatórios e recursos de exploração do Google Analytics 4 são mantidos pelo período padrão de retenção da ferramenta, de 2 meses, uma vez que não houve alteração manual dessa configuração.
               </li>
               <li>
-                <strong>Segurança:</strong>{" "}
-                <Fill>{privacyConfig.securityMeasures}</Fill>
+                <strong>Segurança:</strong> o site utiliza conexão HTTPS, com certificado SSL, para proteger a comunicação entre o navegador do visitante e o servidor. A hospedagem é realizada na plataforma Hostinger, que disponibiliza recursos de segurança para sua infraestrutura. São adotadas boas práticas para a administração e manutenção do site, visando reduzir riscos de acesso não autorizado e comprometimento das informações.
               </li>
             </ul>
           </Section>

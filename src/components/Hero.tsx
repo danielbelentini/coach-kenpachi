@@ -55,7 +55,7 @@ export function Hero() {
           </div>
 
           <p className="border-l-[3px] border-brand-orange pl-4 text-white text-[0.95rem] max-w-[46ch]">
-            <strong className="text-brand-orange">Consultoria Completa</strong> — nutrição e treinamento
+            <strong className="text-brand-orange">Consultoria Completa:</strong> nutrição e treinamento
             planejados e acompanhados pelo mesmo profissional.
           </p>
         </div>

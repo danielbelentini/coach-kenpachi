@@ -25,7 +25,7 @@ export function Method() {
       className="py-[clamp(3rem,6vw,5.5rem)] bg-brand-green"
       aria-labelledby="method-heading"
     >
-      <div className="max-w-[1180px] mx-auto px-5 md:px-8">
+      <div className="max-w-295 mx-auto px-5 md:px-8">
         <Reveal>
           <h2 id="method-heading" className="text-white">
             Um planejamento construído{" "}
