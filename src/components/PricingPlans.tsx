@@ -85,7 +85,7 @@ export function PricingPlans() {
         ))}
       </div>
 
-      <p className="mt-6 text-center text-[0.85rem]">
+      <p className="max-w-full mx-auto block mt-6 text-center text-[0.85rem]">
         Parcelamento disponível. Consulte as condições pelo WhatsApp.
       </p>
     </div>

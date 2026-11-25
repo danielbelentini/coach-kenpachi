@@ -1,32 +1,16 @@
 import { AccentMark } from "./AccentMark";
 import { Reveal } from "./Reveal";
 
-/**
- * [DEPOIMENTO REAL — INSERIR]
- * [IMAGEM ANTES/DEPOIS — INSERIR COM AUTORIZAÇÃO]
- *
- * Cada item vira um "case" horizontal em largura ampla (duas fotos +
- * texto ao lado), com posição alternada entre imagem e texto. O Case
- * Marcelo é o único com conteúdo real (autorizado — briefing V2, seção
- * 14); os demais são placeholders prontos para receber depoimentos com
- * autorização. Para adicionar um novo case, duplique um item deste array.
- *
- * As fotos já são elementos <img> reais (placeholder visual, não uma
- * caixa de texto) — para inserir a foto definitiva, troque apenas o
- * "src" de cada uma pelo arquivo real. A legenda "Antes"/"Depois"
- * continua sendo texto HTML separado (figcaption), nunca embutida na
- * imagem.
- */
 const CASES = [
   {
     id: "marcelo",
     label: "Case Marcelo",
-    title: "Mais de 20 kg eliminados em 6 meses",
+    title: "Mais de 15 kg eliminados em 6 meses",
     srcBefore: "/images/depoimentos/marcelo-01.avif",
     srcAfter: "/images/depoimentos/marcelo-02.avif",
     paragraphs: [
       "Marcelo iniciou o acompanhamento buscando mudar sua composição corporal e sua rotina. Ao longo de seis meses, o trabalho envolveu alimentação, treinamento e mudanças de rotina, com ajustes de acordo com sua evolução e dificuldades.",
-      "Ao final do período, foram mais de 20 kg eliminados, além de melhora nos resultados apresentados nos exames acompanhados durante o processo.",
+      "Ao final do período, foram mais de 15 kg eliminados, além de melhora nos resultados apresentados nos exames acompanhados durante o processo.",
     ],
     beforeAlt: "Foto de antes do Marcelo — imagem provisória, será substituída pela foto real",
     afterAlt: "Foto de depois do Marcelo — imagem provisória, será substituída pela foto real",

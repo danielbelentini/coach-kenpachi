@@ -37,9 +37,9 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: [
       {
-        url: "/images/logo-coach-kenpachi.png",
+        url: "/images/og-coach-kenpachi.avif",
         width: 1200,
-        height: 340,
+        height: 630,
         alt: siteConfig.name,
       },
     ],
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
-    images: ["/images/logo-coach-kenpachi.png"],
+    images: ["/images/og-coach-kenpachi.avif"],
   },
   robots: {
     index: true,
@@ -70,7 +70,7 @@ const jsonLd = {
   name: siteConfig.name,
   description: siteConfig.description,
   url: siteConfig.siteUrl,
-  image: `${siteConfig.siteUrl}/images/logo-coach-kenpachi.png`,
+  image: `${siteConfig.siteUrl}/images/og-coach-kenpachi.avif`,
   sameAs: [siteConfig.instagramUrl],
 };
 
@@ -96,7 +96,7 @@ export default function RootLayout({
         <ConsentManager />
         <a
           href="#main-content"
-          className="absolute -top-full left-4 bg-brand-orange text-white px-5 py-3 rounded-[6px] z-[1000] transition-[top] duration-[220ms] focus:top-4"
+          className="absolute -top-full left-4 bg-brand-orange text-white px-5 py-3 rounded-md z-1000 transition-[top] duration-220 focus:top-4"
         >
           Pular para o conteúdo principal
         </a>

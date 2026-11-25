@@ -7,7 +7,7 @@ import { WhatsAppCta } from "./WhatsAppCta";
  * Coach aqui (briefing V2, seção 6). Ver README, seção "Como trocar a
  * imagem de fundo do Hero".
  */
-const BACKGROUND_IMAGE_URL = "/images/bg-hero.jpg";
+const BACKGROUND_IMAGE_URL = "/images/bg-hero.avif";
 
 export function Hero() {
   return (

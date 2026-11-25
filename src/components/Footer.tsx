@@ -14,7 +14,7 @@ export function Footer() {
       <div className="max-w-[1180px] mx-auto px-5 md:px-8 grid gap-8 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <Image
-            src="/images/logo-coach-kenpachi.png"
+            src="/images/logo-coach-kenpachi.avif"
             alt="Coach Kenpachi"
             width={180}
             height={51}

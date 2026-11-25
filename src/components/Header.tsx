@@ -13,7 +13,7 @@ export function Header() {
           aria-label="Coach Kenpachi — página inicial"
         >
           <Image
-            src="/images/logo-coach-kenpachi.png"
+            src="/images/logo-coach-kenpachi.avif"
             alt="Coach Kenpachi"
             width={220}
             height={62}

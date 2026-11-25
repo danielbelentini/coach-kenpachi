@@ -8,7 +8,7 @@ import { WhatsAppCta } from "./WhatsAppCta";
  * publicar — ver README, seção "Como trocar a imagem de fundo do CTA
  * final".
  */
-const BACKGROUND_IMAGE_URL = "https://placehold.co/1920x1080/2a2d30/2a2d30";
+const BACKGROUND_IMAGE_URL = "/images/bg-cta.avif";
 
 export function FinalCta() {
   return (
